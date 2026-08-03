@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yilin Gu — Portfolio</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+      background-color: #ffffff;
+      color: #111111;
+      line-height: 1.45; /* 紧凑行距 */
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* 固定 Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 90px;
+      padding: 0 80px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 100;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    }
+    .logo { 
+      font-size: 1.1rem; 
+      font-weight: 500; 
+      letter-spacing: 0.02em; 
+    }
+    nav ul { 
+      display: flex; 
+      gap: 48px; 
+      list-style: none; 
+    }
+    nav a { 
+      font-size: 0.95rem; 
+      color: #777777; 
+      font-weight: 400;
+      transition: color 0.25s ease; 
+    }
+    nav a:hover, nav a.active { 
+      color: #111111; 
+      font-weight: 500;
+    }
+
+    /* 页面主要容器 */
+    main { 
+      padding-top: 90px; 
+    }
+
+    .page-section { 
+      display: none; 
+      width: 100%;
+      max-width: 1200px; 
+      margin: 0 auto; 
+      padding: 60px 80px 120px 80px; 
+      min-height: calc(100vh - 90px);
+    }
+    .page-section.active { 
+      display: block; 
+    }
+
+    /* -------------------------------------------------------------
+       1. 首页 (Home) - Venn 状态切换
+       ------------------------------------------------------------- */
+    .home-scroll-container {
+      height: 140vh;
+      position: relative;
+    }
+    .sticky-hero {
+      position: sticky;
+      top: 90px;
+      height: calc(100vh - 90px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      margin-top: -20px;
+    }
+
+    .venn-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 1200px;
+      height: 640px;
+    }
+    .venn-svg { 
+      width: 100%; 
+      height: 100%; 
+      overflow: visible; 
+    }
+    
+    .venn-circle {
+      fill: #ffffff;
+      fill-opacity: 0;
+      stroke: #d0d0d0;
+      stroke-width: 1.25;
+      transform-origin: center;
+      animation: vennBreathing 4s ease-in-out infinite;
+      transition: stroke 0.3s ease, fill 0.3s ease, fill-opacity 0.3s ease, stroke-width 0.3s ease;
+    }
+
+    .venn-group:nth-child(1) .venn-circle { animation-delay: 0s; }
+    .venn-group:nth-child(2) .venn-circle { animation-delay: 1.3s; }
+    .venn-group:nth-child(3) .venn-circle { animation-delay: 2.6s; }
+
+    @keyframes vennBreathing {
+      0%, 100% { stroke-opacity: 0.6; transform: scale(1); }
+      50% { stroke-opacity: 1; stroke-width: 1.5; transform: scale(1.012); }
+    }
+    
+    .venn-text {
+      dominant-baseline: middle;
+      pointer-events: none;
+      transition: fill 0.3s ease, opacity 0.3s ease;
+    }
+
+    .state-b { opacity: 0; fill: #999999; text-anchor: middle; }
+    .state-a { opacity: 1; }
+    
+    .title-hello { font-size: 32px; font-weight: 350; fill: #111111; letter-spacing: -0.01em; }
+    .title-name { font-size: 44px; font-weight: 500; fill: #111111; letter-spacing: -0.01em; }
+    .title-intro-multiline { font-size: 26px; font-weight: 350; fill: #222222; letter-spacing: -0.01em; line-height: 1.4; }
+    
+    .hook-line {
+      fill: #666666;
+      font-style: italic;
+      font-weight: 300;
+      animation: gentleBreathing 3.2s ease-in-out infinite;
+      transform-origin: center;
+    }
+
+    @keyframes gentleBreathing {
+      0%, 100% { opacity: 0.9; transform: translateY(0px); }
+      50% { opacity: 0.35; transform: translateY(3.5px); }
+    }
+
+    .interactive-mode .venn-group { cursor: pointer; }
+    .interactive-mode .venn-group:hover .venn-circle {
+      stroke: #111111;
+      stroke-width: 1.8;
+      fill: #111111;
+      fill-opacity: 0.025;
+      animation-play-state: paused;
+    }
+    .interactive-mode .venn-group:hover .venn-text.state-b { fill: #111111; font-weight: 500; }
+
+    .tagline {
+      margin-top: 15px;
+      font-size: 15px;
+      color: #666666;
+      letter-spacing: 0.1em;
+      text-transform: lowercase;
+      text-decoration: underline;
+      text-underline-offset: 6px;
+      text-decoration-color: #cccccc;
+      opacity: 0;
+      transition: opacity 0.25s ease, color 0.2s ease;
+      cursor: pointer;
+    }
+    .tagline:hover { color: #111111; text-decoration-color: #111111; }
+
+    /* -------------------------------------------------------------
+       2. Projects Page - 卡片排版
+       ------------------------------------------------------------- */
+    .page-header { margin-bottom: 40px; }
+    .page-title { font-size: 2rem; font-weight: 500; color: #111111; letter-spacing: -0.01em; margin-bottom: 6px; }
+    .page-subtitle { font-size: 0.95rem; color: #777777; font-weight: 400; }
+
+    .category-title { 
+      font-size: 1.25rem; 
+      font-weight: 500; 
+      color: #111111;
+      margin: 50px 0 24px 0; 
+      border-top: 1px solid #eeeeee; 
+      padding-top: 20px;
+    }
+    .category-title:first-of-type { margin-top: 0; border-top: none; padding-top: 0; }
+
+    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px 36px; }
+    
+    .card { display: block; cursor: pointer; }
+    .card-image-wrapper {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      border: 1px solid #e2e2e2;
+      background-color: #f7f7f7;
+      border-radius: 0;
+      overflow: hidden;
+      position: relative;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    }
+    .card-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    
+    .card-header-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-top: 14px;
+    }
+    .card-title { font-size: 1.05rem; font-weight: 500; color: #111111; transition: color 0.25s ease; }
+    .card-year { font-size: 0.85rem; color: #888888; font-weight: 400; }
+    .card-hook { font-size: 0.9rem; color: #666666; line-height: 1.4; margin-top: 4px; }
+
+    .card:hover .card-image-wrapper {
+      border-color: #111111;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.07);
+      transform: translateY(-4px);
+    }
+    .card:hover .card-image { transform: scale(1.03); }
+    .card:hover .card-title { color: #000000; }
+
+    /* -------------------------------------------------------------
+       3. 动态 Case Study 详情页样式
+       ------------------------------------------------------------- */
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.95rem;
+      color: #666666;
+      cursor: pointer;
+      margin-bottom: 28px;
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+    .back-btn:hover {
+      color: #111111;
+      transform: translateX(-4px);
+    }
+    .detail-tag {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #888888;
+      margin-bottom: 10px;
+    }
+    .detail-title {
+      font-size: 2.4rem;
+      font-weight: 500;
+      color: #111111;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    .detail-hook {
+      font-size: 1.15rem;
+      color: #444444;
+      line-height: 1.45;
+      margin-bottom: 32px;
+      max-width: 900px;
+    }
+    
+    .detail-hero-media {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background-color: #f4f4f4;
+      border: 1px solid #e2e2e2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #999999;
+      font-size: 1rem;
+      margin-bottom: 48px;
+      overflow: hidden;
+    }
+    .detail-hero-media img, .detail-hero-media video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .detail-hero-media.hidden-hero {
+      display: none;
+    }
+
+    /* 双栏正文结构 */
+    .detail-grid {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 48px;
+      border-top: 1px solid #eeeeee;
+      padding-top: 32px;
+    }
+    .detail-sidebar-item {
+      margin-bottom: 28px;
+    }
+    .detail-sidebar-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #888888;
+      margin-bottom: 4px;
+    }
+    .detail-sidebar-val {
+      font-size: 0.95rem;
+      color: #111111;
+      font-weight: 500;
+      line-height: 1.35;
+    }
+    
+    .detail-body-text {
+      font-size: 1rem;
+      color: #333333;
+      line-height: 1.55;
+    }
+
+    /* 自然流畅的排版样式 */
+    .cs-section { margin-bottom: 36px; }
+    .cs-heading {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #111111;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+      border-bottom: 1px solid #f0f0f0;
+      padding-bottom: 6px;
+    }
+    .cs-paragraph { margin-bottom: 12px; color: #333333; font-weight: 350; font-size: 0.98rem; line-height: 1.5; }
+    
+    /* 单张大图展示 */
+    .single-photo-feature {
+      width: 100%;
+      margin: 20px 0 8px 0;
+      border: 1px solid #e2e2e2;
+      overflow: hidden;
+      background: #fafafa;
+    }
+    .single-photo-feature img {
+      width: 100%;
+      max-height: 500px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .single-photo-feature:hover img {
+      transform: scale(1.02);
+    }
+
+    /* 视频容器 */
+    .embedded-video-container {
+      width: 100%;
+      margin: 20px 0 8px 0;
+      border: 1px solid #e0e0e0;
+      background: #000000;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+    }
+    .embedded-video-container video {
+      width: 100%;
+      display: block;
+    }
+    .embedded-video-caption {
+      font-size: 0.82rem;
+      color: #777777;
+      margin-top: 6px;
+      margin-bottom: 20px;
+      text-align: center;
+      font-style: italic;
+    }
+
+    /* 现场图片排版 */
+    .photo-feature-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 16px;
+      margin: 20px 0 8px 0;
+    }
+    .photo-feature-main {
+      width: 100%;
+      height: 100%;
+      min-height: 320px;
+      border: 1px solid #e2e2e2;
+      overflow: hidden;
+    }
+    .photo-feature-main img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .photo-feature-sub {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .photo-feature-item {
+      width: 100%;
+      height: 150px;
+      border: 1px solid #e2e2e2;
+      overflow: hidden;
+    }
+    .photo-feature-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .photo-feature-main:hover img, .photo-feature-item:hover img {
+      transform: scale(1.03);
+    }
+
+    /* -------------------------------------------------------------
+       4. CV & Contact 页面样式
+       ------------------------------------------------------------- */
+    .cv-layout { display: grid; grid-template-columns: 250px 1fr; gap: 48px; }
+    .cv-sidebar { border-right: 1px solid #eeeeee; padding-right: 32px; }
+    .cv-sidebar-block { margin-bottom: 32px; }
+    .cv-sidebar-title { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.08em; color: #888888; margin-bottom: 12px; font-weight: 600; }
+    .cv-sidebar-list { list-style: none; font-size: 0.9rem; color: #444444; line-height: 1.4; }
+    .cv-sidebar-list li { margin-bottom: 8px; }
+    .cv-sidebar-list strong { color: #111111; font-weight: 500; display: block; margin-bottom: 2px; }
+    .cv-sidebar-list span { font-size: 0.84rem; color: #666666; display: block; }
+    
+    .cv-timeline-item { margin-bottom: 32px; }
+    .cv-timeline-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px; }
+    .cv-role { font-size: 1.05rem; font-weight: 500; color: #111111; }
+    .cv-period { font-size: 0.85rem; color: #888888; white-space: nowrap; }
+    .cv-company { font-size: 0.92rem; color: #555555; margin-bottom: 8px; font-weight: 400; }
+    
+    /* 调淡的工作与项目描述 */
+    .cv-desc { font-size: 0.92rem; color: #666666; line-height: 1.45; }
+    .cv-desc ul { margin-left: 16px; margin-top: 6px; }
+    .cv-desc li { margin-bottom: 6px; }
+    .cv-desc strong { color: #222222; }
+    
+    .cv-focus-tags { 
+      font-size: 0.85rem; 
+      color: #666666; 
+      margin-top: 6px; 
+      line-height: 1.4; 
+    }
+    .cv-focus-tags span {
+      display: inline-block;
+      background: #f4f4f4;
+      padding: 2px 7px;
+      border-radius: 3px;
+      margin-right: 5px;
+      margin-bottom: 5px;
+      font-size: 0.8rem;
+      color: #555555;
+    }
+
+    .cv-divider {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #888888;
+      font-weight: 600;
+      margin: 36px 0 20px 0;
+      padding-top: 14px;
+      border-top: 1px solid #eeeeee;
+    }
+    .cv-profile {
+      font-size: 0.95rem;
+      color: #444444;
+      line-height: 1.5;
+      margin-bottom: 28px;
+      font-weight: 350;
+    }
+    .cv-profile p {
+      margin-bottom: 10px;
+    }
+
+    .contact-container { max-width: 680px; }
+    .contact-intro { font-size: 1.05rem; color: #333333; line-height: 1.5; margin-bottom: 32px; }
+    .contact-methods { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-bottom: 40px; }
+    .contact-card { border: 1px solid #eeeeee; padding: 20px; background: #fafafa; transition: border-color 0.25s ease; }
+    .contact-card:hover { border-color: #cccccc; }
+    .contact-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: #888888; margin-bottom: 6px; }
+    .contact-value { font-size: 0.95rem; color: #111111; font-weight: 500; }
+
+  </style>
+</head>
+<body>
+
+  <!-- Header 导航栏 -->
+  <header>
+    <div class="logo"><a href="#" onclick="showSection('home')">Yilin Gu</a></div>
+    <nav>
+      <ul>
+        <li><a href="#" id="nav-projects" onclick="showSection('projects')">Projects</a></li>
+        <li><a href="#" id="nav-cv" onclick="showSection('cv')">CV</a></li>
+        <li><a href="#" id="nav-contact" onclick="showSection('contact')">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- 1. 首页 (Home) - Venn 状态切换 -->
+    <section id="home" class="page-section active" style="padding:0; max-width:100%;">
+      <div class="home-scroll-container">
+        <div class="sticky-hero" id="hero-sticky">
+          <div class="venn-wrapper">
+            <svg class="venn-svg" viewBox="0 0 900 650">
+              <g class="venn-group" onclick="handleGroupClick('professional-cases')">
+                <circle class="venn-circle" cx="450" cy="225" r="200" />
+                <text class="venn-text state-b" x="450" y="105" style="font-size: 24px; font-weight: 500;">Experience</text>
+                <text class="venn-text state-b" x="450" y="138" style="font-size: 24px; font-weight: 500;">Designer</text>
+              </g>
+              <g class="venn-group" onclick="handleGroupClick('creative-projects')">
+                <circle class="venn-circle" cx="320" cy="415" r="200" />
+                <text class="venn-text state-b" x="210" y="465" style="font-size: 24px; font-weight: 500;">Creative</text>
+                <text class="venn-text state-b" x="210" y="498" style="font-size: 24px; font-weight: 500;">Technologist</text>
+              </g>
+              <g class="venn-group" onclick="handleGroupClick('presentation-insights')">
+                <circle class="venn-circle" cx="580" cy="415" r="200" />
+                <text class="venn-text state-b" x="690" y="465" style="font-size: 22px; font-weight: 500;">Innovation Strategist &amp;</text>
+                <text class="venn-text state-b" x="690" y="498" style="font-size: 22px; font-weight: 500;">Researcher</text>
+              </g>
+
+              <g class="state1-layer">
+                <text class="venn-text title-hello state-a" x="100" y="350" text-anchor="end">Hello! I am</text>
+                <text class="venn-text title-name state-a" x="450" y="350" text-anchor="middle">Yilin Gu</text>
+                <text class="venn-text title-intro-multiline state-a" x="800" y="310" text-anchor="start">
+                  <tspan x="800" dy="0">too analytical for pure arts,</tspan>
+                  <tspan x="800" dy="1.35em">too creative for pure tech.</tspan>
+                  <tspan x="800" dy="1.45em" class="hook-line">scroll to see me as...</tspan>
+                </text>
+              </g>
+            </svg>
+          </div>
+          <p class="tagline" id="tagline" onclick="showSection('projects')">i want to explore ALL</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Projects Page -->
+    <section id="projects" class="page-section">
+      <div class="page-header">
+        <h1 class="page-title">Selected Works</h1>
+        <p class="page-subtitle">Exploration across experience design, creative technology, and innovation strategy.</p>
+      </div>
+
+      <!-- Category 1: Professional Cases -->
+      <h2 id="professional-cases" class="category-title">Professional Cases</h2>
+      <div class="grid">
+        <div class="card" onclick="openProjectDetail('workshop-design')">
+          <div class="card-image-wrapper">
+            <img src="image&video/workshop design/cover img.png" alt="Workshop Design Cover" class="card-image">
+          </div>
+          <div class="card-header-line">
+            <h3 class="card-title">Strategic Workshop Frameworks</h3>
+            <span class="card-year">2024–2026</span>
+          </div>
+          <p class="card-hook">Designing high-stakes strategic alignment experiences for global leaders.</p>
+        </div>
+
+        <div class="card" onclick="openProjectDetail('visual-odyssey')">
+          <div class="card-image-wrapper">
+            <img src="image&video/visual odyssey/visual odyssey.jpg" alt="Visual Odyssey Cover" class="card-image">
+          </div>
+          <div class="card-header-line">
+            <h3 class="card-title">Visual Odyssey System</h3>
+            <span class="card-year">2024–2026</span>
+          </div>
+          <p class="card-hook">Transforming strategic workshop closings into dynamic visual hero journeys.</p>
+        </div>
+
+        <div class="card" onclick="openProjectDetail('executive-facilitation')">
+          <div class="card-image-wrapper">
+            <img src="image&video/facilitation/photo3.jpg" alt="Executive Facilitation Cover" class="card-image">
+          </div>
+          <div class="card-header-line">
+            <h3 class="card-title">Cross-Cultural Executive Facilitation</h3>
+            <span class="card-year">2024–2026</span>
+          </div>
+          <p class="card-hook">Steering C-suite consensus across global cultures and complex domains.</p>
+        </div>
+      </div>
+
+      <!-- Category 2: Creative Technologist -->
+      <h2 id="creative-projects" class="category-title">Creative Technologist</h2>
+      <div class="grid">
+        <div class="card" onclick="openProjectDetail('avatar-creator')">
+          <div class="card-image-wrapper">
+            <img src="image&video/avatar creator/Avatar Creator Demo Video/Avatar Creator Demo Video-封面.jpg" alt="Avatar Creator Cover" class="card-image">
+          </div>
+          <div class="card-header-line">
+            <h3 class="card-title">Web-based Interactive Avatar Creator</h3>
+            <span class="card-year">2026</span>
+          </div>
+          <p class="card-hook">Transforming event onboarding into an engaging, collective digital twin experience.</p>
+        </div>
+
+        <div class="card" onclick="openProjectDetail('warroom-vr')">
+          <div class="card-image-wrapper">
+            <img src="image&video/vr warrom/war room env -no logo.png" alt="Warroom VR Experience Cover" class="card-image">
+          </div>
+          <div class="card-header-line">
+            <h3 class="card-title">Next-Gen Warroom VR Experience</h3>
+            <span class="card-year">2025</span>
+          </div>
+          <p class="card-hook">Immersive spatial collaboration for high-stakes medical operations.</p>
+        </div>
+      </div>
+
+      <!-- Category 3: Innovation Strategist & Researcher -->
+      <h2 id="presentation-insights" class="category-title">Innovation Strategist & Researcher</h2>
+      <div class="grid">
+        <div class="card" onclick="openProjectDetail('ai-worldcafe')">
+          <div class="card-image-wrapper">
+            <img src="image&video/4d/photo2.jpg" alt="4D AI Worldcafe Cover" class="card-image">
+          </div>
+          <div class="card-header-line">
+            <h3 class="card-title">4D AI Worldcafe: Spatial Intelligence</h3>
+            <span class="card-year">2024–2026</span>
+          </div>
+          <p class="card-hook">Unlocking Human-AI co-creation from text to 4D spatial intelligence.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Dynamic Case Study Detail Section -->
+    <section id="project-detail" class="page-section">
+      <div class="back-btn" onclick="showSection('projects')">
+        ← Back to Projects
+      </div>
+
+      <div class="detail-tag" id="d-tag">Category / Year</div>
+      <h1 class="detail-title" id="d-title">Project Title</h1>
+      <p class="detail-hook" id="d-hook">Project Hook / Main value statement</p>
+
+      <div class="detail-hero-media" id="d-media">
+        <!-- 动态 Hero 媒体 -->
+      </div>
+
+      <div class="detail-grid">
+        <div class="detail-sidebar">
+          <div class="detail-sidebar-item">
+            <div class="detail-sidebar-label">Role & Capabilities</div>
+            <div class="detail-sidebar-val" id="d-role">Role Details</div>
+          </div>
+          <div class="detail-sidebar-item">
+            <div class="detail-sidebar-label">Timeline</div>
+            <div class="detail-sidebar-val" id="d-year">Year</div>
+          </div>
+          <div class="detail-sidebar-item" id="d-extra-meta">
+            <!-- 额外信息 -->
+          </div>
+        </div>
+
+        <div class="detail-body-text" id="d-desc">
+          <!-- 动态自然文案正文 -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. CV Page -->
+    <section id="cv" class="page-section">
+      <div class="page-header">
+        <h1 class="page-title">Curriculum Vitae</h1>
+        <p class="page-subtitle">Designing human-centred experiences where AI, emerging technologies, and strategic innovation meet.</p>
+      </div>
+
+      <div class="cv-layout">
+        <!-- 左侧栏：Skills 列表 -->
+        <div class="cv-sidebar">
+          <div class="cv-sidebar-block">
+            <h3 class="cv-sidebar-title">Strategic &amp; Experience Design</h3>
+            <ul class="cv-sidebar-list">
+              <li>Experience Design</li>
+              <li>Interaction Design</li>
+              <li>User Experience Design</li>
+              <li>Design Thinking</li>
+              <li>Co-creation Methods</li>
+              <li>Strategic Storytelling</li>
+              <li>Systems Thinking</li>
+            </ul>
+          </div>
+
+          <div class="cv-sidebar-block">
+            <h3 class="cv-sidebar-title">AI &amp; Emerging Tech</h3>
+            <ul class="cv-sidebar-list">
+              <li>Generative AI</li>
+              <li>AI Experience Design</li>
+              <li>Creative Coding</li>
+              <li>Interactive Prototyping</li>
+              <li>Human-Computer Interaction</li>
+              <li>Physical Computing</li>
+            </ul>
+          </div>
+
+          <div class="cv-sidebar-block">
+            <h3 class="cv-sidebar-title">Tools &amp; Development</h3>
+            <ul class="cv-sidebar-list">
+              <li><strong>Design &amp; UI</strong><span>Figma, Adobe Creative Suite</span></li>
+              <li><strong>Creative Code</strong><span>Python, JavaScript, C++, Arduino</span></li>
+              <li><strong>3D &amp; Spatial</strong><span>TouchDesigner, Blender, Cinema 4D, 3ds Max, Unity, Unreal Engine</span></li>
+            </ul>
+          </div>
+
+          <div class="cv-sidebar-block">
+            <h3 class="cv-sidebar-title">Languages</h3>
+            <ul class="cv-sidebar-list">
+              <li>Chinese (Native)</li>
+              <li>English (Professional Working)</li>
+              <li>Italian (B1)</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 右侧栏：Profile, Experience, Education & Projects -->
+        <div class="cv-main">
+          <div class="cv-profile">
+            <p>
+              Strategic Experience Designer with an interdisciplinary background in architecture, computing, and innovation consulting. Experienced in designing AI-powered experiences, strategic workshops, and interactive solutions that connect emerging technologies with human needs and business transformation.
+            </p>
+            <p>
+              Combining design thinking, spatial intelligence, generative AI, and storytelling, I translate complex challenges into immersive experiences, digital prototypes, and future-oriented strategies. With experience at EY wavespace and an MSc background in digital experience design, I specialise in exploring how AI and emerging technologies can reshape the way people interact, collaborate, and experience digital environments.
+            </p>
+          </div>
+
+          <!-- 工作经历 (Professional Experience) -->
+          <div class="cv-divider">Professional Experience</div>
+
+          <div class="cv-timeline-item">
+            <div class="cv-timeline-header">
+              <span class="cv-role">Strategic Experience Designer | AI Innovation Consultant</span>
+              <span class="cv-period">Dec 2024 – Aug 2026</span>
+            </div>
+            <div class="cv-company">EY wavespace · Shanghai, China</div>
+            <div class="cv-desc">
+              <ul>
+                <li>Designed and facilitated <strong>50+ innovation workshops</strong> for enterprise clients, applying design thinking, co-creation methods, and strategic design approaches to explore digital transformation and AI opportunities.</li>
+                <li>Developed AI-powered experiences and interactive prototypes by integrating generative AI, spatial computing, and emerging technologies into client-facing innovation scenarios.</li>
+                <li>Translated complex business challenges into human-centred experiences through UX design, interaction design, prototyping, and strategic storytelling.</li>
+                <li>Designed immersive storytelling frameworks and visual communication systems to transform strategic insights into engaging experiences for executive audiences.</li>
+                <li>Researched and experimented with emerging AI technologies, including generative models and open-source creative workflows, exploring their potential applications in business and experience design.</li>
+                <li>Collaborated with multidisciplinary teams and clients across real estate, F&amp;B, biotechnology, technology, and fashion industries to deliver innovation strategies and proof-of-concept solutions.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="cv-timeline-item">
+            <div class="cv-timeline-header">
+              <span class="cv-role">UX Designer</span>
+              <span class="cv-period">Mar 2024 – Sep 2024</span>
+            </div>
+            <div class="cv-company">Nanjing LES Cybersecurity and IT Research Institute · Nanjing, China</div>
+            <div class="cv-desc">
+              <ul>
+                <li>Conducted user research, requirement analysis, and competitive research to identify user needs and improve digital product experiences.</li>
+                <li>Designed user flows, interaction prototypes, and functional specifications through collaboration with product managers, developers, and testing teams.</li>
+                <li>Supported product iteration through usability analysis, design refinement, and cross-functional communication.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 教育经历 (Education) -->
+          <div class="cv-divider">Education</div>
+
+          <div class="cv-timeline-item">
+            <div class="cv-timeline-header">
+              <span class="cv-role">MSc Digital and Interaction Design</span>
+              <span class="cv-period">Sep 2026 – Present</span>
+            </div>
+            <div class="cv-company">Politecnico di Milano · Milan, Italy</div>
+            <div class="cv-focus-tags">
+              <span>Digital Experience Design</span>
+              <span>Interaction Design</span>
+              <span>Human-Computer Interaction</span>
+              <span>Service Innovation</span>
+              <span>Emerging Technologies</span>
+            </div>
+          </div>
+
+          <div class="cv-timeline-item">
+            <div class="cv-timeline-header">
+              <span class="cv-role">MSc Computing and Creative Industry <em style="font-weight:400; font-style:normal; color:#888;">(Distinction)</em></span>
+              <span class="cv-period">Oct 2022 – Dec 2023</span>
+            </div>
+            <div class="cv-company">University of the Arts London (UAL) · London, UK</div>
+            <div class="cv-focus-tags">
+              <span>Creative Computing</span>
+              <span>Machine Intelligence</span>
+              <span>Physical Computing</span>
+              <span>Computational Creativity</span>
+              <span>Interactive Media</span>
+              <span>Computational Environments</span>
+            </div>
+          </div>
+
+          <div class="cv-timeline-item">
+            <div class="cv-timeline-header">
+              <span class="cv-role">BA (Hons) Architecture <em style="font-weight:400; font-style:normal; color:#888;">(2:1 Honours)</em></span>
+              <span class="cv-period">Sep 2019 – Jun 2022</span>
+            </div>
+            <div class="cv-company">The University of Manchester · Manchester, UK</div>
+            <div class="cv-focus-tags">
+              <span>Spatial Design</span>
+              <span>Environmental Design</span>
+              <span>Systems Thinking</span>
+              <span>Digital Fabrication</span>
+            </div>
+          </div>
+
+          <div class="cv-timeline-item">
+            <div class="cv-timeline-header">
+              <span class="cv-role">Google UX Design Professional Certificate</span>
+              <span class="cv-period">Nov 2023 – Jun 2024</span>
+            </div>
+          </div>
+
+          <!-- 精选项目 (Selected Projects) -->
+          <div class="cv-divider">Selected Projects</div>
+
+          <div class="cv-timeline-item">
+            <div class="cv-timeline-header">
+              <span class="cv-role">Strategic Workshop Frameworks</span>
+              <span class="cv-period">2024 – 2026</span>
+            </div>
+            <div class="cv-company">Experience Design &amp; Innovation Consulting · EY wavespace</div>
+            <div class="cv-desc">
+              Designed modular workshop frameworks combining strategic design methods, storytelling, and collaborative facilitation. Created immersive environments that enabled enterprise teams to explore emerging technologies, align strategic visions, and co-create future solutions.
+            </div>
+          </div>
+
+          <div class="cv-timeline-item">
+            <div class="cv-timeline-header">
+              <span class="cv-role">4D AI Worldcafe: Spatial Intelligence</span>
+              <span class="cv-period">2024 – 2026</span>
+            </div>
+            <div class="cv-company">AI Strategy Workshop &amp; Future Experience Research</div>
+            <div class="cv-desc">
+              Explored the evolution of AI interaction from screen-based assistants toward spatial intelligence and human-AI collaboration. Designed workshop experiences allowing participants to experiment with generative AI workflows and envision future spatial computing scenarios.
+            </div>
+          </div>
+
+          <div class="cv-timeline-item">
+            <div class="cv-timeline-header">
+              <span class="cv-role">Web-based Interactive Avatar Creator</span>
+              <span class="cv-period">2026</span>
+            </div>
+            <div class="cv-company">Creative Technology Prototype</div>
+            <div class="cv-desc">
+              Developed an interactive avatar generation experience integrating web interaction, AI-generated imagery, and large-scale digital displays. Created a participatory experience where users contribute digital identities into collective visual environments.
+            </div>
+          </div>
+
+          <div class="cv-timeline-item">
+            <div class="cv-timeline-header">
+              <span class="cv-role">Window of the Mind</span>
+              <span class="cv-period">2023</span>
+            </div>
+            <div class="cv-company">Generative Visualization of Emotional States · MSc Thesis, UAL</div>
+            <div class="cv-desc">
+              Explored the relationship between physiological signals and emotional expression through AI-generated visualisation. Integrated biosignal sensing, Arduino, Python data processing, and image-to-image translation models to transform emotional states into visual narratives.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Contact Page -->
+    <section id="contact" class="page-section">
+      <div class="page-header">
+        <h1 class="page-title">Get in Touch</h1>
+        <p class="page-subtitle">Open for jobs, innovative projects, and any collaboration opportunities.</p>
+      </div>
+
+      <div class="contact-container">
+        <p class="contact-intro">
+          Whether you have an exciting role, a fresh idea, or just want to chat about design and tech—my inbox is always open!
+        </p>
+
+        <div class="contact-methods">
+          <div class="contact-card">
+            <div class="contact-label">Email</div>
+            <div class="contact-value"><a href="mailto:gyilin1115@gmail.com">gyilin1115@gmail.com</a></div>
+          </div>
+          <div class="contact-card">
+            <div class="contact-label">Location</div>
+            <div class="contact-value">Milan, Italy / Shanghai, China</div>
+          </div>
+          <div class="contact-card">
+            <div class="contact-label">LinkedIn</div>
+            <div class="contact-value"><a href="http://linkedin.com/in/yilin-gu-83a210221" target="_blank">Yilin Gu</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const projectData = {
+      'visual-odyssey': {
+        tag: 'Professional Cases — Visual Storytelling & Experience Architecture',
+        title: 'Visual Odyssey System',
+        hook: 'Transforming strategic workshop closings into dynamic visual hero journeys and emotional executive alignment.',
+        role: 'Lead Experience Architect & Visual Strategist',
+        year: '2024 – 2026',
+        heroImage: 'image&video/visual odyssey//visual odyssey.jpg',
+        extraMeta: `
+          <div class="detail-sidebar-label">Core Capabilities</div>
+          <div class="detail-sidebar-val" style="font-size:0.92rem; font-weight:400; color:#555;">
+            Strategic Storytelling<br>AI-Assisted Visual Systems<br>Large-Screen Digital Canvas<br>Executive Alignment
+          </div>
+        `,
+        htmlContent: `
+          <div class="cs-section">
+            <h2 class="cs-heading">01. Reimagining the Closing Ritual: From Fatigue to Finale</h2>
+            <p class="cs-paragraph">
+              After a full day of intensive strategic sessions, traditional slide summaries often face a common hurdle: executive attention drops right when enthusiasm needs to be at its highest. 
+            </p>
+            <p class="cs-paragraph">
+              <strong>Visual Odyssey System</strong> was created to rethink how a high-stakes workshop concludes. By translating the day’s discussions, key breakthroughs, and future roadmaps into a tailor-made <em>Hero’s Journey</em> canvas, we turn standard recaps into an inspiring, high-energy closing ritual.
+            </p>
+          </div>
+
+          <div class="cs-section">
+            <h2 class="cs-heading">02. Tailor-Made Narrative Metaphors & Stakeholder Buy-in</h2>
+            <p class="cs-paragraph">
+              Rather than using generic roadmap icons, every canvas features a custom visual universe crafted around the client’s industry context and strategic goals.
+            </p>
+            <p class="cs-paragraph">
+              <strong>Milestones as Achievements:</strong> Each session on the agenda is represented as a landmark overcome by the team, visually summarizing achievements, pivotal insights, and future action items.
+            </p>
+            <p class="cs-paragraph">
+              <strong>Fostering Ownership:</strong> Seeing their collective efforts woven into a cohesive narrative gives leadership teams a shared sense of pride, transforming abstract strategy into tangible commitment.
+            </p>
+          </div>
+
+          <div class="cs-section">
+            <h2 class="cs-heading">03. End-to-End Design Architecture & AI Workflow</h2>
+            <p class="cs-paragraph">
+              As the sole designer leading this initiative from concept to delivery, I developed a hybrid workflow combining rapid generative exploration with precision design layout:
+            </p>
+            <p class="cs-paragraph">
+              <strong>1. Narrative & Concept Development:</strong> Framing the agenda into story arcs and defining thematic visual metaphors.
+            </p>
+            <p class="cs-paragraph">
+              <strong>2. Generative Art Generation:</strong> Leveraging AI tools to rapidly iterate complex spatial themes, key assets, and environmental moods.
+            </p>
+            <p class="cs-paragraph">
+              <strong>3. Modular Composition & Polishing:</strong> Vectorizing and refining artwork in Photoshop, Illustrator, and Figma to build high-resolution, scaleable digital canvases ready for live presentation.
+            </p>
+          </div>
+
+          <div class="cs-section">
+            <h2 class="cs-heading">04. Digital Interactive Delivery & Venue Impact</h2>
+            <p class="cs-paragraph">
+              Presented live on dynamic large-format digital displays, the visual unveiling marks the emotional high point of the event. It provides facilitators with an intuitive storytelling backdrop and gives executives a memorable, shareable vision of their collective future path.
+            </p>
+            
+            <div class="single-photo-feature">
+              <img src="image&video/visual odyssey//photo1.jpg" alt="Visual Odyssey Live Venue Showcase">
+            </div>
+            <div class="embedded-video-caption">Live execution: High-resolution digital interactive visual canvas presented on large venue displays during executive closing sessions.</div>
+          </div>
+        `
+      },
+      'avatar-creator': {
+        tag: 'Creative Technologist — Web Interaction & Event Innovation',
+        title: 'Web-based Interactive Avatar Creator',
+        hook: 'Reimagining event check-in as an engaging, shared digital twin onboarding experience.',
+        role: 'Solo Developer & Experience Designer',
+        year: '2026',
+        hideHero: true,
+        extraMeta: `
+          <div class="detail-sidebar-label">Interaction Tech</div>
+          <div class="detail-sidebar-val" style="font-size:0.92rem; font-weight:400; color:#555;">
+            Web-based Interactive Canvas<br>Touchscreen &amp; Tablet Sync<br>Real-time Display Engine<br>Dynamic Group Photo Export
+          </div>
+        `,
+        htmlContent: `
+          <div class="cs-section">
+            <h2 class="cs-heading">01. Setting the Tone from Minute One</h2>
+            <p class="cs-paragraph">
+              Check-in is usually treated as an administrative routine—guests confirm their names, take a badge, and walk in. But for high-stakes innovation workshops, this first touchpoint is a prime opportunity to spark curiosity and establish a forward-looking, highly collaborative atmosphere right from the start.
+            </p>
+            <p class="cs-paragraph">
+              To elevate this arrival experience, I created a web-based interactive tool that invites participants to design their own digital avatars upon entering. Instead of passively waiting for the event to start, guests immediately become active participants in building a shared virtual space.
+            </p>
+
+            <div class="embedded-video-container">
+              <video controls autoplay muted loop poster="image&video/avatar creator//Avatar Creator Demo Video//Avatar Creator Demo Video-封面.jpg">
+                <source src="image&video/avatar creator//Avatar Creator Demo Video//Avatar Creator Demo Video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <div class="embedded-video-caption">Interactive Prototype Stream: Personalizing facial features, selecting thematic outfits, signing on screen, and syncing live to the venue display.</div>
+          </div>
+
+          <div class="cs-section">
+            <h2 class="cs-heading">02. Micro-Interactions &amp; Live Synchronicity</h2>
+            <p class="cs-paragraph">
+              Designed to run smoothly on venue touchscreens and tablets, the web app offers a lightweight, intuitive interface. Guests customize their avatars with options for hair, clothing, and accessories tailored to the event theme, then complete their profile with a quick handwritten signature.
+            </p>
+            <p class="cs-paragraph">
+              The moment an avatar is saved, it flies seamlessly onto the main event screen in real time. As attendees arrive, the venue display gradually transforms into a vibrant, collective portrait of everyone in the room.
+            </p>
+
+            <div class="photo-feature-grid">
+              <div class="photo-feature-main">
+                <img src="image&video/avatar creator//20260622 永发印务培训-19.JPG" alt="Live Workshop Engagement 1">
+              </div>
+              <div class="photo-feature-sub">
+                <div class="photo-feature-item">
+                  <img src="image&video/avatar creator//20260622 永发印务培训-20.JPG" alt="Live Avatar Customization 2">
+                </div>
+                <div class="photo-feature-item">
+                  <img src="image&video/avatar creator//20260622 永发印务培训-29-1.JPG" alt="Live Display Sync 3">
+                </div>
+              </div>
+            </div>
+            <div class="embedded-video-caption">Live execution at executive workshops: High guest engagement, organic peer interaction, and real-time screen orchestration.</div>
+          </div>
+
+          <div class="cs-section">
+            <h2 class="cs-heading">03. Shared Energy &amp; Operational Value</h2>
+            <p class="cs-paragraph">
+              This playful onboarding ritual delivered impact beyond initial icebreaking:
+            </p>
+            <p class="cs-paragraph">
+              <strong>Natural Social Momentum:</strong> Watching avatars appear on the big screen naturally drew people together. It created an easy conversation starter among colleagues and set a relaxed, open tone for the rest of the day.
+            </p>
+            <p class="cs-paragraph">
+              <strong>Seamless Event Flow:</strong> Because the digital registration and display pipeline ran autonomously, event facilitators were freed up to greet guests and focus on hospitality.
+            </p>
+            <p class="cs-paragraph">
+              <strong>Lasting Event Assets:</strong> At the end of the session, the system automatically arranged all created avatars into a high-resolution composite photo, providing event organizers with a clean, ready-to-share visual asset for internal wrap-up reports and communications.
+            </p>
+          </div>
+        `
+      },
+      'warroom-vr': {
+        tag: 'Creative Technologist — Spatial Computing',
+        title: 'Next-Gen Warroom VR Experience',
+        hook: 'Bridging complex surgical telemetry and executive decision-making through spatial VR collaboration.',
+        role: 'Solo Project Lead & Creative Technologist',
+        year: '2025',
+        extraMeta: `
+          <div class="detail-sidebar-label">Deliverables</div>
+          <div class="detail-sidebar-val" style="font-size:0.92rem; font-weight:400; color:#555;">
+            VR Spatial Environment<br>Multi-screen UI System<br>On-site Live Facilitation
+          </div>
+        `,
+        heroVideo: 'image&video/vr warrom//VR效果1121.mp4',
+        htmlContent: `
+          <div class="cs-section">
+            <h2 class="cs-heading">01. Spatial Collaboration in High-Stakes Environments</h2>
+            <p class="cs-paragraph">
+              During a major medical technology innovation summit, we designed a virtual warroom experience tailored for surgical decision-makers. The goal was to demonstrate how spatial computing can bring clarity to high-density medical data and complex telemetry.
+            </p>
+          </div>
+
+          <div class="cs-section">
+            <h2 class="cs-heading">02. Interface Architecture & Synchronized Views</h2>
+            <p class="cs-paragraph">
+              The spatial UI balances telemetry data, multi-angle video streams, and 3D environment anchors within a comfortable VR field of view. To keep non-VR participants engaged, the immersive headset feed was mirrored to external venue displays, allowing broader audience participation.
+            </p>
+          </div>
+
+          <div class="cs-section">
+            <h2 class="cs-heading">03. Live On-Site Delivery</h2>
+            <p class="cs-paragraph">
+              Leading the live technical setup and facilitation on-site, I managed hardware calibration and live guest demos, delivering an intuitive, accessible experience for executives exploring spatial computing.
+            </p>
+            
+            <div class="photo-feature-grid">
+              <div class="photo-feature-main">
+                <img src="image&video/vr warrom//photo1.jpg" alt="On-site Setup 1">
+              </div>
+              <div class="photo-feature-sub">
+                <div class="photo-feature-item">
+                  <img src="image&video/vr warrom//photo2.jpg" alt="On-site Engagement 2">
+                </div>
+                <div class="photo-feature-item">
+                  <img src="image&video/vr warrom//photo3.jpg" alt="Executive VR Demonstration 3">
+                </div>
+              </div>
+            </div>
+            <div class="embedded-video-caption">Live execution at the innovation summit: Guiding executive VR onboarding and multi-screen interactions.</div>
+          </div>
+        `
+      },
+      'workshop-design': {
+        tag: 'Professional Cases — 2024–2026',
+        title: 'Strategic Workshop Frameworks',
+        hook: 'Designing high-stakes strategic alignment experiences for global leaders.',
+        role: 'Strategic & Experience Designer',
+        year: '2024 – 2026',
+        heroImage: 'image&video/workshop design//cover img.png',
+        htmlContent: `<p class="cs-paragraph">Architected and custom-designed 50+ themed workshop frameworks for global enterprises. Built immersive storylines, interactive toolkits, and modular exercises to guide executives toward actionable future visions.</p>`
+      },
+      'executive-facilitation': {
+        tag: 'Professional Cases — 2024–2026',
+        title: 'Cross-Cultural Executive Facilitation',
+        hook: 'Steering C-suite consensus across global cultures and complex domains.',
+        role: 'Lead Workshop Facilitator',
+        year: '2024 – 2026',
+        heroImage: 'image&video/facilitation//photo3.jpg',
+        htmlContent: `<p class="cs-paragraph">Facilitated 20+ live executive sessions for global leaders, driving alignment and collaborative decision-making across complex environments.</p>`
+      },
+      'ai-worldcafe': {
+        tag: 'Innovation Strategist & Researcher — 2024–2026',
+        title: '4D AI Worldcafe: Spatial Intelligence',
+        hook: 'Unlocking Human-AI co-creation from text to 4D spatial intelligence.',
+        role: 'Lead Researcher & Experience Owner',
+        year: '2024 – 2026',
+        heroImage: 'image&video/4d//photo2.jpg',
+        extraMeta: `
+          <div class="detail-sidebar-label">Target Audience</div>
+          <div class="detail-sidebar-val" style="font-size:0.92rem; font-weight:400; color:#555;">
+            Global Enterprise Leaders<br>(C-Suite, IT, Finance, Tax, Sales & Marketing)
+          </div>
+          <div class="detail-sidebar-label" style="margin-top:16px;">Core Focus</div>
+          <div class="detail-sidebar-val" style="font-size:0.92rem; font-weight:400; color:#555;">
+            Hands-on AI Skills<br>Human-AI Co-creation<br>Commercial Implementation
+          </div>
+        `,
+        htmlContent: `
+          <div class="cs-section">
+            <h2 class="cs-heading">01. Rethinking the Frontier: Bridge Executive Vision to AI Execution</h2>
+            <p class="cs-paragraph">
+              When cross-functional leaders from global enterprises—ranging from C-Suite decision-makers to finance, IT, tax, and marketing experts—gather at the Innovation Hub, they come with a shared challenge: how to demystify emerging technologies and turn abstract concepts into practical business value.
+            </p>
+            <p class="cs-paragraph">
+              <strong>4D AI Worldcafe</strong> was designed to bridge this exact gap. It shifts the conversation from passive observation to an active exploration of technological paradigms, helping diverse teams understand industry trends, spark strategic foresight, and build alignment on future roadmaps.
+            </p>
+          </div>
+
+          <div class="cs-section">
+            <h2 class="cs-heading">02. Hands-on Co-Creation: From Text Prompts to 4D Spatial Worldbuilding</h2>
+            <p class="cs-paragraph">
+              True innovation happens through direct experience. The core of this workshop encourages participants to get hands-on with AI tools, testing real-world co-creation workflows rather than just listening to theories:
+            </p>
+            <p class="cs-paragraph">
+              <strong>1. Skill Acquisition & Applied Workflows:</strong> Guiding participants to master generative AI prompts and workflow logic, showing how AI agents can augment complex business functions.
+            </p>
+            <p class="cs-paragraph">
+              <strong>2. Dimensional Evolution:</strong> Demonstrating the spatial trajectory of AI capabilities—moving from 1D text agents and 2D visual outputs to 3D models and 4D spatial intelligence environments.
+            </p>
+            <p class="cs-paragraph">
+              <strong>3. Peer Knowledge Exchange:</strong> Creating a collaborative Worldcafe setting where experts from sales, finance, and tech exchange unique perspectives, discovering unexpected cross-departmental application scenarios.
+            </p>
+
+            <div class="single-photo-feature">
+              <img src="image&video/4d//photo1.jpg" alt="4D Spatial Intelligence Hands-on Experience Showcase">
+            </div>
+            <div class="embedded-video-caption">Live execution: Facilitating cross-functional teams through hands-on spatial AI co-creation and interactive worldbuilding.</div>
+          </div>
+
+          <div class="cs-section">
+            <h2 class="cs-heading">03. Impact & Future Trajectory</h2>
+            <p class="cs-paragraph">
+              By blending hands-on skill building with strategic brainstorming, the workshop empowers enterprise teams to walk away with actionable insights and confidence. It transforms technology uncertainty into concrete organizational capability and long-term innovation momentum.
+            </p>
+          </div>
+        `
+      }
+    };
+
+    function openProjectDetail(id) {
+      const data = projectData[id];
+      if (!data) return;
+
+      document.getElementById('d-tag').innerText = data.tag;
+      document.getElementById('d-title').innerText = data.title;
+      document.getElementById('d-hook').innerText = data.hook;
+      document.getElementById('d-role').innerText = data.role;
+      document.getElementById('d-year').innerText = data.year;
+
+      const extraMetaBox = document.getElementById('d-extra-meta');
+      extraMetaBox.innerHTML = data.extraMeta ? data.extraMeta : '';
+
+      const mediaBox = document.getElementById('d-media');
+      
+      if (data.hideHero) {
+        mediaBox.classList.add('hidden-hero');
+      } else {
+        mediaBox.classList.remove('hidden-hero');
+        if (data.heroVideo) {
+          mediaBox.innerHTML = `
+            <video controls autoplay muted loop style="width:100%; height:100%; object-fit:cover;">
+              <source src="${data.heroVideo}" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          `;
+        } else if (data.heroImage) {
+          mediaBox.innerHTML = `<img src="${data.heroImage}" alt="${data.title} Hero Media">`;
+        } else {
+          mediaBox.innerHTML = 'Full-width Media / Video / Demo Visual Area';
+        }
+      }
+
+      document.getElementById('d-desc').innerHTML = data.htmlContent;
+      showSection('project-detail');
+    }
+
+    let isInteractive = false;
+
+    function updateHomeScroll() {
+      const homeSec = document.getElementById('home');
+      if (!homeSec.classList.contains('active')) return;
+
+      const scrollTop = window.scrollY;
+      const fadeOutDistance = 70;  
+      const fadeInDistance = 150;  
+
+      const elementsA = document.querySelectorAll('.state-a');
+      const elementsB = document.querySelectorAll('.state-b');
+      const tagline = document.getElementById('tagline');
+      const heroSticky = document.getElementById('hero-sticky');
+
+      let opacityA = Math.max(1 - (scrollTop / fadeOutDistance), 0);
+      elementsA.forEach(el => el.style.opacity = opacityA);
+
+      let opacityB = 0;
+      if (scrollTop > fadeOutDistance) {
+        opacityB = Math.min((scrollTop - fadeOutDistance) / (fadeInDistance - fadeOutDistance), 1);
+      }
+      elementsB.forEach(el => el.style.opacity = opacityB);
+      tagline.style.opacity = opacityB;
+
+      if (scrollTop >= 120) {
+        heroSticky.classList.add('interactive-mode');
+        isInteractive = true;
+      } else {
+        heroSticky.classList.remove('interactive-mode');
+        isInteractive = false;
+      }
+    }
+
+    window.addEventListener('scroll', updateHomeScroll);
+
+    function handleGroupClick(categoryId) {
+      if (isInteractive) {
+        navigateToCategory(categoryId);
+      }
+    }
+
+    function showSection(sectionId) {
+      document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('nav a').forEach(l => l.classList.remove('active'));
+      
+      const targetSec = document.getElementById(sectionId);
+      if(targetSec) targetSec.classList.add('active');
+      
+      const navLink = document.getElementById(`nav-${sectionId}`);
+      if(navLink) navLink.classList.add('active');
+      
+      window.scrollTo({ top: 0, behavior: 'auto' });
+      if (sectionId === 'home') {
+        updateHomeScroll();
+      }
+    }
+
+    function navigateToCategory(categoryId) {
+      showSection('projects');
+      setTimeout(() => {
+        const el = document.getElementById(categoryId);
+        if (el) {
+          const yOffset = -110; 
+          const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({top: y, behavior: 'smooth'});
+        }
+      }, 100);
+    }
+  </script>
+</body>
+</html>

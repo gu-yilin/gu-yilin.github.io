@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yilin Gu — Résumé</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  @page { size: A4; margin: 0; }
+
+  body {
+    font-family: 'Source Sans Pro', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 10pt;
+    line-height: 1.5;
+    color: #2d2d2d;
+    background: #e8e8e8;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    background: #fff;
+    padding: 22mm 20mm 18mm 20mm;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.12);
+    position: relative;
+  }
+
+  @media print {
+    body { background: #fff; padding: 0; }
+    .page {
+      width: 100%; min-height: auto; box-shadow: none;
+      padding: 14mm 13mm 12mm 13mm;
+      page-break-after: always;
+    }
+  }
+
+  :root {
+    --accent: #2b7cbf;
+    --text: #2d2d2d;
+    --text-light: #5a5a5a;
+    --text-muted: #888;
+    --divider: #ddd;
+    --section-gap: 14px;
+  }
+
+  /* ===== Header ===== */
+  .header {
+    text-align: center;
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--divider);
+  }
+
+  .header .name {
+    font-size: 28pt;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #1a1a1a;
+    line-height: 1.1;
+  }
+  .header .name .last { color: var(--accent); }
+
+  .header .tagline {
+    font-size: 9.5pt;
+    color: var(--text-light);
+    margin-top: 6px;
+    font-style: italic;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.4;
+  }
+
+  .header .contact {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 4px 14px;
+    margin-top: 10px;
+    font-size: 9pt;
+    color: var(--text-light);
+  }
+  .header .contact span { white-space: nowrap; }
+  .header .contact .sep { color: #ccc; }
+  .header .contact a { color: var(--text-light); text-decoration: none; }
+  .header .contact a:hover { color: var(--accent); }
+
+  /* ===== Section Titles ===== */
+  .section-title {
+    font-size: 12pt;
+    font-weight: 700;
+    color: #1a1a1a;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border-bottom: 2.5px solid var(--accent);
+    padding-bottom: 3px;
+    margin-top: var(--section-gap);
+    margin-bottom: 10px;
+  }
+  .section-title .highlight { color: var(--accent); }
+
+  /* ===== Summary ===== */
+  .summary p {
+    color: var(--text);
+    line-height: 1.6;
+    text-align: justify;
+    margin-bottom: 3px;
+    font-size: 10pt;
+  }
+
+  /* ===== Entry ===== */
+  .entry {
+    margin-bottom: 10px;
+    page-break-inside: avoid;
+  }
+
+  .entry-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    margin-bottom: 2px;
+  }
+  .entry-header .left { flex: 1; min-width: 0; }
+  .entry-header .entry-title {
+    font-size: 11pt;
+    font-weight: 700;
+    color: #1a1a1a;
+  }
+  .entry-header .entry-subtitle {
+    font-size: 10pt;
+    font-weight: 400;
+    color: var(--text-light);
+    font-style: italic;
+  }
+  .entry-header .entry-location {
+    font-size: 9pt;
+    color: var(--text-muted);
+    margin-left: 10px;
+    white-space: nowrap;
+  }
+  .entry-header .entry-date {
+    font-size: 9pt;
+    color: var(--text-muted);
+    white-space: nowrap;
+    text-align: right;
+    min-width: 130px;
+  }
+
+  .entry-details {
+    list-style: none;
+    padding-left: 0;
+  }
+  .entry-details li {
+    position: relative;
+    padding-left: 13px;
+    margin-bottom: 2px;
+    font-size: 9.5pt;
+    color: var(--text);
+    line-height: 1.5;
+  }
+  .entry-details li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 4.5px;
+    height: 4.5px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  /* ===== Education tags ===== */
+  .focus-tags {
+    margin-top: 2px;
+    font-size: 9pt;
+    color: var(--text-light);
+    line-height: 1.45;
+    padding-left: 13px;
+  }
+
+  /* ===== Skills ===== */
+  .skills-list { list-style: none; padding: 0; }
+  .skills-list li {
+    display: flex;
+    margin-bottom: 4px;
+    page-break-inside: avoid;
+    font-size: 9.5pt;
+  }
+  .skill-category {
+    font-weight: 700;
+    color: #1a1a1a;
+    min-width: 165px;
+    flex-shrink: 0;
+  }
+  .skill-category::after { content: ':'; margin-right: 8px; }
+  .skill-values { color: var(--text); }
+
+  /* ===== Languages ===== */
+  .lang-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 30px;
+    font-size: 9.5pt;
+    color: var(--text);
+  }
+  .lang-list .lang-name { font-weight: 600; }
+
+  /* ===== Footer ===== */
+  .footer {
+    text-align: center;
+    font-size: 8pt;
+    color: var(--text-muted);
+    margin-top: 16px;
+    padding-top: 10px;
+    border-top: 1px solid var(--divider);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  @media screen and (max-width: 800px) {
+    .page { width: 100%; padding: 20px; }
+    .header .name { font-size: 22pt; }
+    .skill-category { min-width: 120px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ===== HEADER ===== -->
+  <div class="header">
+    <div class="name">YILIN <span class="last">GU</span></div>
+    <div class="tagline">Designing human-centred experiences where AI, emerging technologies, and strategic innovation meet.</div>
+    <div class="contact">
+      <span>Shanghai, China / Milan, Italy</span>
+      <span class="sep">|</span>
+      <span>&#9993; <a href="mailto:gyilin1115@gmail.com">gyilin1115@gmail.com</a></span>
+      <span class="sep">|</span>
+      <span><a href="https://issuu.com/guyilin/docs/yilingu_portfolio" target="_blank">issuu.com/guyilin</a></span>
+    </div>
+  </div>
+
+  <!-- ===== PROFILE ===== -->
+  <div class="section-title"><span class="highlight">Pro</span>file</div>
+  <div class="summary">
+    <p>
+      Strategic Experience Designer with an interdisciplinary background in architecture, computing, and innovation consulting. Experienced in designing AI-powered experiences, strategic workshops, and interactive solutions that connect emerging technologies with human needs and business transformation.
+    </p>
+    <p>
+      Combining design thinking, spatial intelligence, generative AI, and storytelling, I translate complex challenges into immersive experiences, digital prototypes, and future-oriented strategies. With experience at EY wavespace and an MSc background in digital experience design, I specialise in exploring how AI and emerging technologies can reshape the way people interact, collaborate, and experience digital environments.
+    </p>
+    <p>
+      Currently MSc Digital and Interaction Design student at Politecnico di Milano, focusing on human-centred interaction, digital experiences, and emerging technologies.
+    </p>
+  </div>
+
+  <!-- ===== EDUCATION ===== -->
+  <div class="section-title"><span class="highlight">Edu</span>cation</div>
+
+  <div class="entry">
+    <div class="entry-header">
+      <div class="left">
+        <span class="entry-title">MSc Digital and Interaction Design</span><br>
+        <span class="entry-subtitle">Politecnico di Milano</span>
+        <span class="entry-location">Milan, Italy</span>
+      </div>
+      <div class="entry-date">Sep 2026 – Present</div>
+    </div>
+    <div class="focus-tags">Focus areas: Digital Experience Design &middot; Interaction Design &middot; Human-Computer Interaction &middot; Service Innovation &middot; Emerging Technologies</div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-header">
+      <div class="left">
+        <span class="entry-title">MSc Computing and Creative Industry <span style="font-weight:400;font-style:italic;color:var(--accent);">| Distinction</span></span><br>
+        <span class="entry-subtitle">University of the Arts London (UAL)</span>
+        <span class="entry-location">London, UK</span>
+      </div>
+      <div class="entry-date">Oct 2022 – Dec 2023</div>
+    </div>
+    <div class="focus-tags">Relevant areas: Creative Computing &middot; Machine Intelligence &middot; Physical Computing &middot; Computational Creativity &middot; Interactive Media &middot; Computational Environments</div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-header">
+      <div class="left">
+        <span class="entry-title">BA (Hons) Architecture <span style="font-weight:400;font-style:italic;color:var(--accent);">| 2:1 Honours</span></span><br>
+        <span class="entry-subtitle">The University of Manchester</span>
+        <span class="entry-location">Manchester, UK</span>
+      </div>
+      <div class="entry-date">Sep 2019 – Jun 2022</div>
+    </div>
+    <div class="focus-tags">Relevant areas: Spatial Design &middot; Environmental Design &middot; Systems Thinking &middot; Digital Fabrication</div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-header">
+      <div class="left">
+        <span class="entry-title">Google UX Design Professional Certificate</span><br>
+      </div>
+      <div class="entry-date">Nov 2023 – Jun 2024</div>
+    </div>
+  </div>
+
+  <!-- ===== PROFESSIONAL EXPERIENCE ===== -->
+  <div class="section-title"><span class="highlight">Pro</span>fessional Experience</div>
+
+  <div class="entry">
+    <div class="entry-header">
+      <div class="left">
+        <span class="entry-title">Strategic Experience Designer | AI Innovation Consultant</span><br>
+        <span class="entry-subtitle">EY wavespace</span>
+        <span class="entry-location">Shanghai, China</span>
+      </div>
+      <div class="entry-date">Dec 2024 – Aug 2026</div>
+    </div>
+    <ul class="entry-details">
+      <li>Designed and facilitated <strong>50+ innovation workshops</strong> for enterprise clients, applying design thinking, co-creation methods, and strategic design approaches to explore digital transformation and AI opportunities.</li>
+      <li>Developed AI-powered experiences and interactive prototypes by integrating generative AI, spatial computing, and emerging technologies into client-facing innovation scenarios.</li>
+      <li>Translated complex business challenges into human-centred experiences through UX design, interaction design, prototyping, and strategic storytelling.</li>
+      <li>Designed immersive storytelling frameworks and visual communication systems to transform strategic insights into engaging experiences for executive audiences.</li>
+      <li>Researched and experimented with emerging AI technologies, including generative models and open-source creative workflows, exploring their potential applications in business and experience design.</li>
+      <li>Collaborated with multidisciplinary teams and clients across real estate, F&amp;B, biotechnology, technology, and fashion industries to deliver innovation strategies and proof-of-concept solutions.</li>
+    </ul>
+  </div>
+
+  <div class="entry">
+    <div class="entry-header">
+      <div class="left">
+        <span class="entry-title">UX Designer</span><br>
+        <span class="entry-subtitle">Nanjing LES Cybersecurity and IT Research Institute</span>
+        <span class="entry-location">Nanjing, China</span>
+      </div>
+      <div class="entry-date">Mar 2024 – Sep 2024</div>
+    </div>
+    <ul class="entry-details">
+      <li>Conducted user research, requirement analysis, and competitive research to identify user needs and improve digital product experiences.</li>
+      <li>Designed user flows, interaction prototypes, and functional specifications through collaboration with product managers, developers, and testing teams.</li>
+      <li>Supported product iteration through usability analysis, design refinement, and cross-functional communication.</li>
+    </ul>
+  </div>
+
+  <div class="entry">
+    <div class="entry-header">
+      <div class="left">
+        <span class="entry-title">2D &amp; 3D Branding Design Intern</span><br>
+        <span class="entry-subtitle">Nanjing Congtoo Information Technology Co., Ltd.</span>
+        <span class="entry-location">Nanjing, China</span>
+      </div>
+      <div class="entry-date">Jun 2023 – Aug 2023</div>
+    </div>
+    <ul class="entry-details">
+      <li>Developed visual identity systems, motion graphics, and digital communication materials to support brand strategy.</li>
+      <li>Created 3D visualisation models using point cloud data for engineering and technical communication projects.</li>
+    </ul>
+  </div>
+
+  <!-- ===== SELECTED PROJECTS ===== -->
+  <div class="section-title"><span class="highlight">Sel</span>ected Projects</div>
+
+  <div class="entry">
+    <div class="entry-header">
+      <div class="left">
+        <span class="entry-title">Strategic Workshop Frameworks</span><br>
+        <span class="entry-subtitle">Experience Design &amp; Innovation Consulting | EY wavespace</span>
+      </div>
+      <div class="entry-date">2024 – 2026</div>
+    </div>
+    <ul class="entry-details">
+      <li>Designed modular workshop frameworks combining strategic design methods, storytelling, and collaborative facilitation.</li>
+      <li>Created immersive environments that enabled enterprise teams to explore emerging technologies, align strategic visions, and co-create future solutions.</li>
+    </ul>
+  </div>
+
+  <div class="entry">
+    <div class="entry-header">
+      <div class="left">
+        <span class="entry-title">4D AI Worldcafe: Spatial Intelligence</span><br>
+        <span class="entry-subtitle">AI Strategy Workshop &amp; Future Experience Research</span>
+      </div>
+      <div class="entry-date">2024 – 2026</div>
+    </div>
+    <ul class="entry-details">
+      <li>Explored the evolution of AI interaction from screen-based assistants toward spatial intelligence and human-AI collaboration.</li>
+      <li>Designed workshop experiences allowing participants to experiment with generative AI workflows and envision future spatial computing scenarios.</li>
+    </ul>
+  </div>
+
+  <div class="entry">
+    <div class="entry-header">
+      <div class="left">
+        <span class="entry-title">Web-based Interactive Avatar Creator</span><br>
+        <span class="entry-subtitle">Creative Technology Prototype</span>
+      </div>
+      <div class="entry-date">2026</div>
+    </div>
+    <ul class="entry-details">
+      <li>Developed an interactive avatar generation experience integrating web interaction, AI-generated imagery, and large-scale digital displays.</li>
+      <li>Created a participatory experience where users contribute digital identities into collective visual environments.</li>
+    </ul>
+  </div>
+
+  <div class="entry">
+    <div class="entry-header">
+      <div class="left">
+        <span class="entry-title">Window of the Mind</span><br>
+        <span class="entry-subtitle">Generative Visualization of Emotional States | MSc Thesis</span>
+      </div>
+      <div class="entry-date">2023</div>
+    </div>
+    <ul class="entry-details">
+      <li>Explored the relationship between physiological signals and emotional expression through AI-generated visualisation.</li>
+      <li>Integrated biosignal sensing, Arduino, Python data processing, and image-to-image translation models to transform emotional states into visual narratives.</li>
+    </ul>
+  </div>
+
+  <!-- ===== SKILLS ===== -->
+  <div class="section-title"><span class="highlight">Ski</span>lls</div>
+
+  <ul class="skills-list">
+    <li>
+      <span class="skill-category">Strategic &amp; Experience Design</span>
+      <span class="skill-values">Service Design, Experience Design, Interaction Design, User Experience Design, Design Thinking, Workshop Facilitation, Co-creation Methods, Strategic Storytelling, Systems Thinking</span>
+    </li>
+    <li>
+      <span class="skill-category">AI &amp; Emerging Technologies</span>
+      <span class="skill-values">Generative AI, AI Experience Design, Spatial Intelligence, Spatial Computing, Creative Coding, Interactive Prototyping, Human-Computer Interaction, Physical Computing</span>
+    </li>
+    <li>
+      <span class="skill-category">Design &amp; Development Tools</span>
+      <span class="skill-values">Figma, Adobe Creative Suite, Python, JavaScript, C++, Arduino, TouchDesigner, Blender, Cinema 4D, 3ds Max, Unity, Unreal Engine</span>
+    </li>
+  </ul>
+
+  <!-- ===== LANGUAGES ===== -->
+  <div class="section-title"><span class="highlight">Lan</span>guages</div>
+  <div class="lang-list">
+    <span><span class="lang-name">Chinese</span> — Native</span>
+    <span><span class="lang-name">English</span> — Professional Working Proficiency</span>
+    <span><span class="lang-name">Italian</span> — B1</span>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <div class="footer">
+    <span>August 3, 2026</span>
+    <span>Yilin Gu &middot; Résumé</span>
+    <span>1/1</span>
+  </div>
+
+</div>
+
+</body>
+</html>
