@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>Yilin Gu — Portfolio</title>
   <style>
     * {
@@ -420,6 +421,67 @@
       transform: scale(1.03);
     }
 
+    /* Window of the Mind: source imagery within the existing case-study layout. */
+    .mind-cover { object-position: center 24%; }
+    #project-detail[data-project="window-of-the-mind"] .detail-hero-media img {
+      object-position: center 24%;
+    }
+    .mind-video {
+      aspect-ratio: 16 / 9;
+      min-height: 202px;
+    }
+    .mind-video iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    .mind-project-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 24px;
+      margin: 18px 0 24px;
+      font-size: 0.9rem;
+    }
+    .mind-project-links a {
+      border-bottom: 1px solid #bbbbbb;
+      padding-bottom: 3px;
+    }
+    .mind-project-links a:hover { border-color: #111111; }
+    .mind-output-comparison {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      width: 100%;
+      max-width: 500px;
+      margin: 20px auto 8px;
+    }
+    .mind-output-label {
+      font-size: 0.8rem;
+      color: #777777;
+      text-align: center;
+    }
+    .mind-output-comparison img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border: 1px solid #e2e2e2;
+    }
+    .mind-exhibition-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin: 20px 0 8px;
+    }
+    .mind-exhibition-gallery img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      border: 1px solid #e2e2e2;
+    }
+
     /* -------------------------------------------------------------
        4. CV & Contact 页面样式
        ------------------------------------------------------------- */
@@ -489,6 +551,27 @@
     .contact-card:hover { border-color: #cccccc; }
     .contact-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: #888888; margin-bottom: 6px; }
     .contact-value { font-size: 0.95rem; color: #111111; font-weight: 500; }
+
+    @media (max-width: 760px) {
+      header { height: 72px; padding: 0 24px; }
+      nav ul { gap: 20px; }
+      nav a { font-size: 0.85rem; }
+      main { padding-top: 72px; }
+      #projects, #project-detail { padding: 36px 24px 72px; }
+      #projects .grid { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+      #projects .card-header-line { gap: 16px; }
+      #projects .card-year { flex-shrink: 0; }
+      #project-detail .detail-title { font-size: 2rem; }
+      #project-detail .detail-hero-media { margin-bottom: 32px; }
+      #project-detail .detail-grid { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+      #project-detail .detail-sidebar {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0 20px;
+      }
+      #project-detail #d-extra-meta { grid-column: 1 / -1; }
+      .mind-exhibition-gallery { gap: 8px; }
+    }
 
   </style>
 </head>
@@ -601,6 +684,17 @@
             <span class="card-year">2026</span>
           </div>
           <p class="card-hook">Transforming event onboarding into an engaging, collective digital twin experience.</p>
+        </div>
+
+        <div class="card" role="button" tabindex="0" onclick="openProjectDetail('window-of-the-mind')" onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openProjectDetail('window-of-the-mind'); }">
+          <div class="card-image-wrapper">
+            <img src="image&video/window-of-the-mind/cover.jpg" alt="A generated garden projected through the curtained Window of the Mind installation" class="card-image mind-cover" loading="lazy">
+          </div>
+          <div class="card-header-line">
+            <h3 class="card-title">Window of the Mind</h3>
+            <span class="card-year">2023</span>
+          </div>
+          <p class="card-hook">Translating physiological signals into your inner-garden landscape through Physical Computing and Generative Art.</p>
         </div>
 
         <div class="card" onclick="openProjectDetail('warroom-vr')">
@@ -867,6 +961,10 @@
             <div class="cv-desc">
               Explored the relationship between physiological signals and emotional expression through AI-generated visualisation. Integrated biosignal sensing, Arduino, Python data processing, and image-to-image translation models to transform emotional states into visual narratives.
             </div>
+            <div class="mind-project-links">
+              <a href="https://doi.org/10.13140/RG.2.2.21113.24165" target="_blank" rel="noopener noreferrer">Read thesis ↗</a>
+              <a href="https://www.youtube.com/watch?v=sFqROWNBiCw" target="_blank" rel="noopener noreferrer">Watch video presentation ↗</a>
+            </div>
           </div>
         </div>
       </div>
@@ -1044,6 +1142,96 @@
           </div>
         `
       },
+      'window-of-the-mind': {
+        tag: 'Creative Technologist — Physical Computing & Generative Art',
+        title: 'Window of the Mind',
+        hook: 'Turning physiological signals into a personal garden landscape, inviting a moment of self-reflection through human-computer interaction.',
+        role: 'Research, Interaction Design & Development',
+        year: '2023',
+        heroImage: 'image&video/window-of-the-mind/cover.jpg',
+        extraMeta: `
+          <div class="detail-sidebar-label">Interaction Tech</div>
+          <div class="detail-sidebar-val" style="font-size:0.92rem; font-weight:400; color:#555;">
+            PPG Pulse Sensor<br>Python &amp; Physiological Data Processing<br>pix2pix / Conditional GAN<br>Projection Installation
+          </div>
+          <div class="detail-sidebar-label" style="margin-top:24px;">Exhibition</div>
+          <div class="detail-sidebar-val" style="font-size:0.92rem; font-weight:400; color:#555;">
+            2023 Winter Graduation Show<br>Creative Computing Institute<br>University of the Arts London
+          </div>
+        `,
+        htmlContent: `
+          <div class="cs-section">
+            <h2 class="cs-heading">01. A Garden as a Mirror of the Self</h2>
+            <p class="cs-paragraph">
+              What if a computer could offer a space to pause and look inward? <strong>Window of the Mind</strong> is an interactive installation that combines a pulse sensor, Python programming, and generative image translation to create a landscape shaped by the participant's heartbeat.
+            </p>
+            <p class="cs-paragraph">
+              I chose the garden as a metaphor for the inner world: personal, continually changing, and responsive to care. The experience turns physiological signals into a visual starting point for self-expression and a more personal connection with nature.
+            </p>
+            <div class="embedded-video-container mind-video">
+              <iframe data-video-src="https://www.youtube-nocookie.com/embed/sFqROWNBiCw?playsinline=1&amp;rel=0" data-hosted-player="https://gu-yilin.github.io/window-of-the-mind-player.html" title="Window of the Mind — Project Video" loading="eager" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="mind-project-links">
+              <a href="https://www.youtube.com/watch?v=sFqROWNBiCw" target="_blank" rel="noopener noreferrer">Watch video presentation ↗</a>
+              <a href="https://doi.org/10.13140/RG.2.2.21113.24165" target="_blank" rel="noopener noreferrer">Read thesis ↗</a>
+            </div>
+          </div>
+
+          <div class="cs-section">
+            <h2 class="cs-heading">02. From Heartbeat to Visual Language</h2>
+            <p class="cs-paragraph">
+              <strong>Sense &amp; reflect:</strong> A PPG pulse sensor collects heart rate data, which a Python program plots as a BPM graph. Two readings, separated by a brief period of quiet reflection, form the input to the experience.
+            </p>
+            <p class="cs-paragraph">
+              <strong>Map &amp; compose:</strong> The prototype compares SDNN values derived from the readings and maps the difference to three expressive states: positive, neutral, or stressed. These are design mappings that guide the garden's visual conditions. The heart rate graph is then combined with a semantic garden image to create a personalized input for image translation.
+            </p>
+            <p class="cs-paragraph">
+              <strong>Generate &amp; reveal:</strong> A trained pix2pix model translates this composition into a garden scene. The Python application connects the steps, automatically saving and displaying the resulting image as the participant's own window onto a digital landscape.
+            </p>
+          </div>
+
+          <div class="cs-section">
+            <h2 class="cs-heading">03. Training a Generative Garden</h2>
+            <p class="cs-paragraph">
+              I prepared paired semantic and RGB images from the EDEN garden dataset, with 500 pairs each for training, testing, and validation. Building on the existing pix2pix model, I trained <strong>nature_pix2pix</strong> for 150 epochs and reviewed the generated images throughout the process.
+            </p>
+            <p class="cs-paragraph">
+              The resulting model translates the abstract input into recognizable vegetation, sky, water, and garden structures. The examples below show how the heartbeat-derived lines become part of the generated scene.
+            </p>
+            <figure>
+              <div class="mind-output-comparison">
+                <div class="mind-output-label">Semantic input</div>
+                <div class="mind-output-label">Generated garden</div>
+                <img src="image&video/window-of-the-mind/semantic-input-1.jpg" alt="First semantic garden input with white heartbeat-derived lines" loading="lazy">
+                <img src="image&video/window-of-the-mind/generated-garden-1.jpg" alt="First generated garden with bright sky, trees, and fence-like forms" loading="lazy">
+                <img src="image&video/window-of-the-mind/semantic-input-2.jpg" alt="Second semantic input combining garden regions and a heartbeat graph" loading="lazy">
+                <img src="image&video/window-of-the-mind/generated-garden-2.jpg" alt="Second generated garden with foliage, a path, and vertical structures" loading="lazy">
+                <img src="image&video/window-of-the-mind/semantic-input-3.jpg" alt="Third semantic garden input with a different arrangement of image regions" loading="lazy">
+                <img src="image&video/window-of-the-mind/generated-garden-3.jpg" alt="Third generated garden with trees and a soft, painterly landscape" loading="lazy">
+              </div>
+              <figcaption class="embedded-video-caption">Prototype results: paired semantic inputs and generated garden scenes.</figcaption>
+            </figure>
+          </div>
+
+          <div class="cs-section">
+            <h2 class="cs-heading">04. Bringing the Window into Physical Space</h2>
+            <p class="cs-paragraph">
+              The installation was exhibited at the <strong>2023 Winter Graduation Show</strong> at the Creative Computing Institute, University of the Arts London. A small round table held the laptop and pulse sensor, while two facing chairs created a quiet space for participation. Wooden strips and semi-transparent linen framed the projection as a window with curtains.
+            </p>
+            <figure>
+              <div class="mind-exhibition-gallery">
+                <img src="image&video/window-of-the-mind/exhibition-installation.jpg" alt="The full curtained projection installation at the graduation exhibition" loading="lazy">
+                <img src="image&video/window-of-the-mind/projected-garden.jpg" alt="A close view of the generated garden projected inside the window frame" loading="lazy">
+                <img src="image&video/window-of-the-mind/pulse-sensor-setup.jpg" alt="Laptop, illuminated pulse sensor, and project introduction on the exhibition table" loading="lazy">
+              </div>
+              <figcaption class="embedded-video-caption">Exhibition views: the window, the generated landscape, and the physical computing setup.</figcaption>
+            </figure>
+            <p class="cs-paragraph">
+              Participant feedback highlighted the novelty of the experience, its emotional resonance, and a sense of co-creating with the technology. The project brought sensing, model training, and spatial design into one encounter, with future work focused on richer physiological inputs and more detailed image generation.
+            </p>
+          </div>
+        `
+      },
       'warroom-vr': {
         tag: 'Creative Technologist — Spatial Computing',
         title: 'Next-Gen Warroom VR Experience',
@@ -1176,6 +1364,9 @@
       const data = projectData[id];
       if (!data) return;
 
+      showSection('project-detail');
+      document.getElementById('project-detail').dataset.project = id;
+
       document.getElementById('d-tag').innerText = data.tag;
       document.getElementById('d-title').innerText = data.title;
       document.getElementById('d-hook').innerText = data.hook;
@@ -1186,6 +1377,7 @@
       extraMetaBox.innerHTML = data.extraMeta ? data.extraMeta : '';
 
       const mediaBox = document.getElementById('d-media');
+      mediaBox.replaceChildren();
       
       if (data.hideHero) {
         mediaBox.classList.add('hidden-hero');
@@ -1206,7 +1398,12 @@
       }
 
       document.getElementById('d-desc').innerHTML = data.htmlContent;
-      showSection('project-detail');
+      document.querySelectorAll('#d-desc iframe[data-video-src]').forEach(player => {
+        // A hosted enclosing page supplies the HTTP Referer that file:// cannot.
+        player.src = location.protocol === 'file:'
+          ? player.dataset.hostedPlayer
+          : player.dataset.videoSrc;
+      });
     }
 
     let isInteractive = false;
@@ -1252,6 +1449,9 @@
     }
 
     function showSection(sectionId) {
+      if (sectionId !== 'project-detail') {
+        document.querySelectorAll('#project-detail iframe').forEach(player => player.remove());
+      }
       document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
       document.querySelectorAll('nav a').forEach(l => l.classList.remove('active'));
       
@@ -1277,6 +1477,11 @@
           window.scrollTo({top: y, behavior: 'smooth'});
         }
       }, 100);
+    }
+
+    const previewProject = new URLSearchParams(location.search).get('project');
+    if (previewProject && Object.prototype.hasOwnProperty.call(projectData, previewProject)) {
+      openProjectDetail(previewProject);
     }
   </script>
 </body>
