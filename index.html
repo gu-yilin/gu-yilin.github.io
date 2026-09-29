@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -573,7 +573,20 @@
       .mind-exhibition-gallery { gap: 8px; }
     }
 
+  
+    /* Ingreed is a supporting product-design concept, using original interface artefacts. */
+    #project-detail[data-project="ingreed"] .detail-hero-media { aspect-ratio: 16 / 10; border: 0; }
+    #project-detail[data-project="ingreed"] .detail-hero-media img { object-fit: contain; }
+    .ingreed-figure { margin: 26px 0; }
+    .ingreed-figure img { width: 100%; height: auto; display: block; border: 1px solid #e8e8e8; }
+    .ingreed-figure figcaption { color: #666; font-size: .82rem; line-height: 1.5; margin-top: 9px; }
+    .ingreed-decisions { display: grid; gap: 18px; margin: 20px 0; }
+    .ingreed-decision { border-left: 3px solid #278457; padding: 2px 0 2px 18px; }
+    .ingreed-decision h3 { font-size: 1rem; font-weight: 500; margin-bottom: 7px; }
+    .ingreed-decision p { margin: 0; line-height: 1.55; }
+    .ingreed-stage { display: inline-block; font-size: .78rem; color: #28764d; letter-spacing: .04em; margin-bottom: 8px; }
   </style>
+  <link rel="stylesheet" href="visual.css">
 </head>
 <body>
 
@@ -582,63 +595,63 @@
     <div class="logo"><a href="#" onclick="showSection('home')">Yilin Gu</a></div>
     <nav>
       <ul>
-        <li><a href="#" id="nav-projects" onclick="showSection('projects')">Projects</a></li>
-        <li><a href="#" id="nav-cv" onclick="showSection('cv')">CV</a></li>
-        <li><a href="#" id="nav-contact" onclick="showSection('contact')">Contact</a></li>
+        <li><a href="#projects" id="nav-projects" onclick="showSection('projects'); return false;"><span class="nav-num">01</span> Work</a></li>
+        <li><a href="#" id="nav-cv" onclick="showSection('cv'); return false;"><span class="nav-num">02</span> CV</a></li>
+        <li><a href="#" id="nav-contact" onclick="showSection('contact'); return false;"><span class="nav-num">03</span> Contact</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
-    <!-- 1. 首页 (Home) - Venn 状态切换 -->
+    <!-- Personal identity: the intersection of three practices -->
     <section id="home" class="page-section active" style="padding:0; max-width:100%;">
-      <div class="home-scroll-container">
-        <div class="sticky-hero" id="hero-sticky">
-          <div class="venn-wrapper">
-            <svg class="venn-svg" viewBox="0 0 900 650">
-              <g class="venn-group" onclick="handleGroupClick('professional-cases')">
-                <circle class="venn-circle" cx="450" cy="225" r="200" />
-                <text class="venn-text state-b" x="450" y="105" style="font-size: 24px; font-weight: 500;">Experience</text>
-                <text class="venn-text state-b" x="450" y="138" style="font-size: 24px; font-weight: 500;">Designer</text>
-              </g>
-              <g class="venn-group" onclick="handleGroupClick('creative-projects')">
-                <circle class="venn-circle" cx="320" cy="415" r="200" />
-                <text class="venn-text state-b" x="210" y="465" style="font-size: 24px; font-weight: 500;">Creative</text>
-                <text class="venn-text state-b" x="210" y="498" style="font-size: 24px; font-weight: 500;">Technologist</text>
-              </g>
-              <g class="venn-group" onclick="handleGroupClick('presentation-insights')">
-                <circle class="venn-circle" cx="580" cy="415" r="200" />
-                <text class="venn-text state-b" x="690" y="465" style="font-size: 22px; font-weight: 500;">Innovation Strategist &amp;</text>
-                <text class="venn-text state-b" x="690" y="498" style="font-size: 22px; font-weight: 500;">Researcher</text>
-              </g>
-
-              <g class="state1-layer">
-                <text class="venn-text title-hello state-a" x="100" y="350" text-anchor="end">Hello! I am</text>
-                <text class="venn-text title-name state-a" x="450" y="350" text-anchor="middle">Yilin Gu</text>
-                <text class="venn-text title-intro-multiline state-a" x="800" y="310" text-anchor="start">
-                  <tspan x="800" dy="0">too analytical for pure arts,</tspan>
-                  <tspan x="800" dy="1.35em">too creative for pure tech.</tspan>
-                  <tspan x="800" dy="1.45em" class="hook-line">scroll to see me as...</tspan>
-                </text>
-              </g>
-            </svg>
-          </div>
-          <p class="tagline" id="tagline" onclick="showSection('projects')">i want to explore ALL</p>
+      <div class="identity-hero">
+        <div class="identity-copy">
+          <p class="eyebrow">Independent perspective. Connected practice.</p>
+          <h1 class="identity-name">Yilin <em>Gu.</em></h1>
+          <p class="identity-statement">Too analytical for pure arts.<br>Too creative for pure tech.</p>
+          <p class="identity-intro">I connect people, ideas and emerging technologies through experiences, workshops and interactive prototypes.</p>
+          <a class="text-action" href="#projects" onclick="showSection('projects'); return false;">Explore my work <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="identity-map">
+          <svg viewBox="0 0 650 580" class="practice-map" aria-labelledby="map-title map-desc">
+            <title id="map-title">Three practices, one perspective</title><desc id="map-desc">Explore experience design, creative technology, and innovation strategy through the overlapping circles.</desc>
+            <g class="practice experience" role="link" tabindex="0" aria-label="Explore experience design projects" onclick="navigateToCategory('professional-cases')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();navigateToCategory('professional-cases');}">
+              <circle cx="325" cy="201" r="178"/><text x="325" y="112">Experience</text><text x="325" y="142">designer</text><text class="practice-number" x="325" y="76">01</text>
+            </g>
+            <g class="practice technology" role="link" tabindex="0" aria-label="Explore creative technology projects" onclick="navigateToCategory('creative-projects')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();navigateToCategory('creative-projects');}">
+              <circle cx="215" cy="365" r="178"/><text x="155" y="401">Creative</text><text x="155" y="431">technologist</text><text class="practice-number" x="155" y="365">02</text>
+            </g>
+            <g class="practice strategy" role="link" tabindex="0" aria-label="Explore innovation strategy projects" onclick="navigateToCategory('presentation-insights')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();navigateToCategory('presentation-insights');}">
+              <circle cx="435" cy="365" r="178"/><text x="497" y="401">Innovation</text><text x="497" y="431">strategist</text><text class="practice-number" x="497" y="365">03</text>
+            </g>
+            <text class="intersection-word" x="325" y="310">and</text>
+          </svg>
+          <p class="map-caption">The interesting things happen in between.</p>
         </div>
       </div>
+      <div class="identity-footer"><span>Based in Milan · Working across disciplines</span><a href="#projects" onclick="showSection('projects'); return false;">i want to explore ALL ↗</a></div>
+      <section class="home-selection" aria-labelledby="selection-title">
+        <div class="selection-heading"><p class="eyebrow">A selection of my work</p><h2 id="selection-title">Ideas you can <em>experience.</em></h2></div>
+        <div class="selection-grid">
+          <a class="selection-card" href="?project=ai-worldcafe" onclick="openProjectDetail('ai-worldcafe'); return false;"><div class="selection-image"><img src="image&video/4d/photo1.jpg?privacy=016" alt="Facilitating the AI Worldcafe experience" loading="lazy"/></div><p class="eyebrow">AI exploration &amp; co-creation</p><h3>AI Worldcafe <span>↗</span></h3></a>
+          <a class="selection-card" href="?project=avatar-creator" onclick="openProjectDetail('avatar-creator'); return false;"><div class="selection-image"><img src="image&video/avatar creator/Avatar Creator Demo Video/Avatar Creator Demo Video-封面.jpg" alt="Avatar Creator interactive interface" loading="lazy"/></div><p class="eyebrow">Creative technology</p><h3>Avatar Creator <span>↗</span></h3></a>
+          <a class="selection-card" href="?project=ingreed" onclick="openProjectDetail('ingreed'); return false;"><div class="selection-image"><img src="image&video/ingreed/cover.svg" alt="Ingreed mobile product design" loading="lazy"/></div><p class="eyebrow">Product design</p><h3>Ingreed <span>↗</span></h3></a>
+        </div>
+      </section>
     </section>
 
     <!-- 2. Projects Page -->
     <section id="projects" class="page-section">
       <div class="page-header">
-        <h1 class="page-title">Selected Works</h1>
+        <p class="eyebrow">Portfolio / Selected work</p><h1 class="page-title">Different disciplines.<br><em>Shared curiosity.</em></h1>
         <p class="page-subtitle">Exploration across experience design, creative technology, and innovation strategy.</p>
       </div>
 
       <!-- Category 1: Professional Cases -->
       <h2 id="professional-cases" class="category-title">Professional Cases</h2>
       <div class="grid">
-        <div class="card" onclick="openProjectDetail('workshop-design')">
+        <div class="card" role="link" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="openProjectDetail('workshop-design')">
           <div class="card-image-wrapper">
             <img src="image&video/workshop design/cover img.png" alt="Workshop Design Cover" class="card-image">
           </div>
@@ -649,7 +662,7 @@
           <p class="card-hook">Designing high-stakes strategic alignment experiences for global leaders.</p>
         </div>
 
-        <div class="card" onclick="openProjectDetail('visual-odyssey')">
+        <div class="card" role="link" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="openProjectDetail('visual-odyssey')">
           <div class="card-image-wrapper">
             <img src="image&video/visual odyssey/visual odyssey.jpg" alt="Visual Odyssey Cover" class="card-image">
           </div>
@@ -660,9 +673,9 @@
           <p class="card-hook">Transforming strategic workshop closings into dynamic visual hero journeys.</p>
         </div>
 
-        <div class="card" onclick="openProjectDetail('executive-facilitation')">
+        <div class="card" role="link" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="openProjectDetail('executive-facilitation')">
           <div class="card-image-wrapper">
-            <img src="image&video/facilitation/photo3.jpg" alt="Executive Facilitation Cover" class="card-image">
+            <img src="image&video/facilitation/photo3.jpg?privacy=016" alt="Executive Facilitation Cover" class="card-image">
           </div>
           <div class="card-header-line">
             <h3 class="card-title">Cross-Cultural Executive Facilitation</h3>
@@ -675,7 +688,7 @@
       <!-- Category 2: Creative Technologist -->
       <h2 id="creative-projects" class="category-title">Creative Technologist</h2>
       <div class="grid">
-        <div class="card" onclick="openProjectDetail('avatar-creator')">
+        <div class="card" role="link" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="openProjectDetail('avatar-creator')">
           <div class="card-image-wrapper">
             <img src="image&video/avatar creator/Avatar Creator Demo Video/Avatar Creator Demo Video-封面.jpg" alt="Avatar Creator Cover" class="card-image">
           </div>
@@ -697,7 +710,7 @@
           <p class="card-hook">Translating physiological signals into your inner-garden landscape through Physical Computing and Generative Art.</p>
         </div>
 
-        <div class="card" onclick="openProjectDetail('warroom-vr')">
+        <div class="card" role="link" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="openProjectDetail('warroom-vr')">
           <div class="card-image-wrapper">
             <img src="image&video/vr warrom/war room env -no logo.png" alt="Warroom VR Experience Cover" class="card-image">
           </div>
@@ -709,27 +722,38 @@
         </div>
       </div>
 
+      <!-- Product Design: supporting concept work -->
+      <h2 id="product-design" class="category-title">Product Design</h2>
+      <div class="grid">
+        <div class="card" role="button" tabindex="0" onclick="openProjectDetail('ingreed')" onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openProjectDetail('ingreed'); }">
+          <div class="card-image-wrapper">
+            <img src="image&video/ingreed/cover.svg" alt="Ingreed mobile shopping concept with three original interface screens on a cream and green cover" class="card-image" loading="lazy">
+          </div>
+          <div class="card-header-line"><h3 class="card-title">Ingreed</h3><span class="card-year">2024</span></div>
+          <span class="ingreed-stage">UX/UI DESIGN CONCEPT</span>
+          <p class="card-hook">A grocery shopping journey shaped around reusable dietary preferences.</p>
+        </div>
+      </div>
+
       <!-- Category 3: Innovation Strategist & Researcher -->
       <h2 id="presentation-insights" class="category-title">Innovation Strategist & Researcher</h2>
       <div class="grid">
-        <div class="card" onclick="openProjectDetail('ai-worldcafe')">
+        <div class="card" role="link" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="openProjectDetail('ai-worldcafe')">
           <div class="card-image-wrapper">
             <img src="image&video/4d/photo2.jpg" alt="4D AI Worldcafe Cover" class="card-image">
           </div>
           <div class="card-header-line">
-            <h3 class="card-title">4D AI Worldcafe: Spatial Intelligence</h3>
+            <h3 class="card-title">AI Worldcafe</h3>
             <span class="card-year">2024–2026</span>
           </div>
-          <p class="card-hook">Unlocking Human-AI co-creation from text to 4D spatial intelligence.</p>
+          <p class="card-hook">Exploring AI applications through hands-on tools, business scenarios and cross-functional co-creation.</p>
         </div>
       </div>
     </section>
 
     <!-- 3. Dynamic Case Study Detail Section -->
     <section id="project-detail" class="page-section">
-      <div class="back-btn" onclick="showSection('projects')">
-        ← Back to Projects
-      </div>
+      <div class="project-return"><a href="#projects" onclick="showSection('projects'); return false;">← Back to Projects</a></div>
 
       <div class="detail-tag" id="d-tag">Category / Year</div>
       <h1 class="detail-title" id="d-title">Project Title</h1>
@@ -763,104 +787,20 @@
     <!-- 4. CV Page -->
     <section id="cv" class="page-section">
       <div class="page-header">
-        <h1 class="page-title">Curriculum Vitae</h1>
+        <p class="eyebrow">Background / Experience</p><h1 class="page-title">A connected <em>practice.</em></h1>
         <p class="page-subtitle">Designing human-centred experiences where AI, emerging technologies, and strategic innovation meet.</p>
       </div>
 
       <div class="cv-layout">
         <!-- 左侧栏：Skills 列表 -->
-        <div class="cv-sidebar">
-          <div class="cv-sidebar-block">
-            <h3 class="cv-sidebar-title">Strategic &amp; Experience Design</h3>
-            <ul class="cv-sidebar-list">
-              <li>Experience Design</li>
-              <li>Interaction Design</li>
-              <li>User Experience Design</li>
-              <li>Design Thinking</li>
-              <li>Co-creation Methods</li>
-              <li>Strategic Storytelling</li>
-              <li>Systems Thinking</li>
-            </ul>
-          </div>
-
-          <div class="cv-sidebar-block">
-            <h3 class="cv-sidebar-title">AI &amp; Emerging Tech</h3>
-            <ul class="cv-sidebar-list">
-              <li>Generative AI</li>
-              <li>AI Experience Design</li>
-              <li>Creative Coding</li>
-              <li>Interactive Prototyping</li>
-              <li>Human-Computer Interaction</li>
-              <li>Physical Computing</li>
-            </ul>
-          </div>
-
-          <div class="cv-sidebar-block">
-            <h3 class="cv-sidebar-title">Tools &amp; Development</h3>
-            <ul class="cv-sidebar-list">
-              <li><strong>Design &amp; UI</strong><span>Figma, Adobe Creative Suite</span></li>
-              <li><strong>Creative Code</strong><span>Python, JavaScript, C++, Arduino</span></li>
-              <li><strong>3D &amp; Spatial</strong><span>TouchDesigner, Blender, Cinema 4D, 3ds Max, Unity, Unreal Engine</span></li>
-            </ul>
-          </div>
-
-          <div class="cv-sidebar-block">
-            <h3 class="cv-sidebar-title">Languages</h3>
-            <ul class="cv-sidebar-list">
-              <li>Chinese (Native)</li>
-              <li>English (Professional Working)</li>
-              <li>Italian (B1)</li>
-            </ul>
-          </div>
-        </div>
-
+<div class="cv-sidebar"><div class="cv-downloads"><a href="cv/YilinGu-CV.pdf" target="_blank" rel="noopener">Download CV · PDF ↗</a></div><div class="cv-sidebar-block"><h3 class="cv-sidebar-title">Design</h3><ul class="cv-sidebar-list"><li>Design thinking</li><li>Workshop design and facilitation</li><li>User research</li><li>Interaction design</li><li>User flows</li><li>Prototyping</li><li>Strategic storytelling</li><li>Stakeholder collaboration</li></ul></div><div class="cv-sidebar-block"><h3 class="cv-sidebar-title">Tools</h3><ul class="cv-sidebar-list"><li>Figma</li><li>Adobe Creative Suite</li><li>Python</li><li>JavaScript</li><li>Arduino</li></ul></div><div class="cv-sidebar-block"><h3 class="cv-sidebar-title">Languages</h3><ul class="cv-sidebar-list"><li>Chinese (native)</li><li>English (professional working proficiency)</li><li>Italian (B1)</li></ul></div></div>
         <!-- 右侧栏：Profile, Experience, Education & Projects -->
         <div class="cv-main">
-          <div class="cv-profile">
-            <p>
-              Strategic Experience Designer with an interdisciplinary background in architecture, computing, and innovation consulting. Experienced in designing AI-powered experiences, strategic workshops, and interactive solutions that connect emerging technologies with human needs and business transformation.
-            </p>
-            <p>
-              Combining design thinking, spatial intelligence, generative AI, and storytelling, I translate complex challenges into immersive experiences, digital prototypes, and future-oriented strategies. With experience at EY wavespace and an MSc background in digital experience design, I specialise in exploring how AI and emerging technologies can reshape the way people interact, collaborate, and experience digital environments.
-            </p>
-          </div>
+          <div class="cv-profile"><p>Experience designer and creative technologist with experience at EY wavespace and in product management. Connects AI insights and business challenges with workshop experiences, user flows and interactive prototypes. Currently pursuing an MSc in Digital and Interaction Design at Politecnico di Milano, building on architecture and creative computing.</p></div>
 
-          <!-- 工作经历 (Professional Experience) -->
-          <div class="cv-divider">Professional Experience</div>
-
-          <div class="cv-timeline-item">
-            <div class="cv-timeline-header">
-              <span class="cv-role">Strategic Experience Designer | AI Innovation Consultant</span>
-              <span class="cv-period">Dec 2024 – Aug 2026</span>
-            </div>
-            <div class="cv-company">EY wavespace · Shanghai, China</div>
-            <div class="cv-desc">
-              <ul>
-                <li>Designed and facilitated <strong>50+ innovation workshops</strong> for enterprise clients, applying design thinking, co-creation methods, and strategic design approaches to explore digital transformation and AI opportunities.</li>
-                <li>Developed AI-powered experiences and interactive prototypes by integrating generative AI, spatial computing, and emerging technologies into client-facing innovation scenarios.</li>
-                <li>Translated complex business challenges into human-centred experiences through UX design, interaction design, prototyping, and strategic storytelling.</li>
-                <li>Designed immersive storytelling frameworks and visual communication systems to transform strategic insights into engaging experiences for executive audiences.</li>
-                <li>Researched and experimented with emerging AI technologies, including generative models and open-source creative workflows, exploring their potential applications in business and experience design.</li>
-                <li>Collaborated with multidisciplinary teams and clients across real estate, F&amp;B, biotechnology, technology, and fashion industries to deliver innovation strategies and proof-of-concept solutions.</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="cv-timeline-item">
-            <div class="cv-timeline-header">
-              <span class="cv-role">Product Manager</span>
-              <span class="cv-period">Mar 2024 – Nov 2024</span>
-            </div>
-            <div class="cv-company">Nanjing LES Cybersecurity and IT Research Institute · Nanjing, China</div>
-            <div class="cv-desc">
-              <ul>
-                <li>Conducted user research, requirement analysis, and competitive research to identify user needs and improve digital product experiences.</li>
-                <li>Designed user flows, interaction prototypes, and functional specifications through collaboration with product managers, developers, and testing teams.</li>
-                <li>Supported product iteration through usability analysis, design refinement, and cross-functional communication.</li>
-              </ul>
-            </div>
-          </div>
-
+<div class="cv-divider">Professional Experience</div>
+<div class="cv-timeline-item"><div class="cv-timeline-header"><span class="cv-role">Strategic Experience Designer / AI Innovation Consultant</span><span class="cv-period">Dec 2024 - Aug 2026</span></div><div class="cv-company">EY wavespace · Shanghai, China</div><div class="cv-desc"><ul><li>Designed 50+ themed workshop frameworks, using design thinking, co-creation and modular exercises to help enterprise teams explore strategic challenges.</li><li>Co-developed AI Worldcafe, a signature hands-on experience combining text, image, video and spatial AI exploration with business scenarios, cross-functional dialogue and participant co-creation.</li><li>Designed and developed a web-based avatar experience used in multiple live workshops, connecting participant customisation with shared venue displays.</li><li>Collaborated with cross-sector enterprise clients and multidisciplinary teams, with a strong focus on finance and functions spanning tax, IT, sales and marketing, across consumer businesses, technology, life sciences and real estate.</li></ul></div></div>
+<div class="cv-timeline-item"><div class="cv-timeline-header"><span class="cv-role">Product Manager</span><span class="cv-period">Mar 2024 - Nov 2024</span></div><div class="cv-company">Nanjing LES Cybersecurity and IT Research Institute · Nanjing, China</div><div class="cv-desc"><ul><li>Conducted user, requirements and competitive research; translated needs into user flows, interaction prototypes and functional specifications.</li><li>Worked with development and testing teams on usability analysis, design refinement and product iteration.</li></ul></div></div>
           <!-- 教育经历 (Education) -->
           <div class="cv-divider">Education</div>
 
@@ -916,56 +856,10 @@
             </div>
           </div>
 
-          <!-- 精选项目 (Selected Projects) -->
-          <div class="cv-divider">Selected Projects</div>
-
-          <div class="cv-timeline-item">
-            <div class="cv-timeline-header">
-              <span class="cv-role">Strategic Workshop Frameworks</span>
-              <span class="cv-period">2024 – 2026</span>
-            </div>
-            <div class="cv-company">Experience Design &amp; Innovation Consulting · EY wavespace</div>
-            <div class="cv-desc">
-              Designed modular workshop frameworks combining strategic design methods, storytelling, and collaborative facilitation. Created immersive environments that enabled enterprise teams to explore emerging technologies, align strategic visions, and co-create future solutions.
-            </div>
-          </div>
-
-          <div class="cv-timeline-item">
-            <div class="cv-timeline-header">
-              <span class="cv-role">4D AI Worldcafe: Spatial Intelligence</span>
-              <span class="cv-period">2024 – 2026</span>
-            </div>
-            <div class="cv-company">AI Strategy Workshop &amp; Future Experience Research</div>
-            <div class="cv-desc">
-              Explored the evolution of AI interaction from screen-based assistants toward spatial intelligence and human-AI collaboration. Designed workshop experiences allowing participants to experiment with generative AI workflows and envision future spatial computing scenarios.
-            </div>
-          </div>
-
-          <div class="cv-timeline-item">
-            <div class="cv-timeline-header">
-              <span class="cv-role">Web-based Interactive Avatar Creator</span>
-              <span class="cv-period">2026</span>
-            </div>
-            <div class="cv-company">Creative Technology Prototype</div>
-            <div class="cv-desc">
-              Developed an interactive avatar generation experience integrating web interaction, AI-generated imagery, and large-scale digital displays. Created a participatory experience where users contribute digital identities into collective visual environments.
-            </div>
-          </div>
-
-          <div class="cv-timeline-item">
-            <div class="cv-timeline-header">
-              <span class="cv-role">Window of the Mind</span>
-              <span class="cv-period">2023</span>
-            </div>
-            <div class="cv-company">Generative Visualization of Emotional States · MSc Thesis, UAL</div>
-            <div class="cv-desc">
-              Explored the relationship between physiological signals and emotional expression through AI-generated visualisation. Integrated biosignal sensing, Arduino, Python data processing, and image-to-image translation models to transform emotional states into visual narratives.
-            </div>
-            <div class="mind-project-links">
-              <a href="https://doi.org/10.13140/RG.2.2.21113.24165" target="_blank" rel="noopener noreferrer">Read thesis ↗</a>
-              <a href="https://www.youtube.com/watch?v=sFqROWNBiCw" target="_blank" rel="noopener noreferrer">Watch video presentation ↗</a>
-            </div>
-          </div>
+<div class="cv-divider">Selected Projects</div><div class="cv-timeline-item"><div class="cv-timeline-header"><span class="cv-role">AI Worldcafe</span><div class="cv-project-meta"><span class="cv-period">2024–2026</span><a class="cv-project-link" href="?project=ai-worldcafe" onclick="openProjectDetail('ai-worldcafe'); return false;" aria-label="View AI Worldcafe project">View project ↗</a></div></div><div class="cv-desc">Co-developed a signature EY wavespace experience combining text, image, video and spatial AI with hands-on exploration, business scenarios and cross-functional co-creation.</div></div>
+<div class="cv-timeline-item"><div class="cv-timeline-header"><span class="cv-role">Avatar Creator</span><div class="cv-project-meta"><span class="cv-period">2026</span><a class="cv-project-link" href="?project=avatar-creator" onclick="openProjectDetail('avatar-creator'); return false;" aria-label="View Avatar Creator project">View project ↗</a></div></div><div class="cv-desc">Solo developer and experience designer. Built touchscreen customisation, signatures, live display updates and group-photo export for workshop arrivals.</div></div>
+<div class="cv-timeline-item"><div class="cv-timeline-header"><span class="cv-role">Ingreed</span><div class="cv-project-meta"><span class="cv-period">2024</span><a class="cv-project-link" href="?project=ingreed" onclick="openProjectDetail('ingreed'); return false;" aria-label="View Ingreed project">View project ↗</a></div></div><div class="cv-desc">Designed a mobile shopping concept with reusable dietary filters, product discovery, checkout and order tracking.</div></div>
+<div class="cv-timeline-item"><div class="cv-timeline-header"><span class="cv-role">Window of the Mind</span><div class="cv-project-meta"><span class="cv-period">2023</span><a class="cv-project-link" href="?project=window-of-the-mind" onclick="openProjectDetail('window-of-the-mind'); return false;" aria-label="View Window of the Mind project">View project ↗</a></div></div><div class="cv-desc">Developed a pulse-sensor and Python installation using pix2pix to generate garden imagery; exhibited at UAL Creative Computing Institute.</div></div>
         </div>
       </div>
     </section>
@@ -973,7 +867,7 @@
     <!-- 5. Contact Page -->
     <section id="contact" class="page-section">
       <div class="page-header">
-        <h1 class="page-title">Get in Touch</h1>
+        <p class="eyebrow">Contact</p><h1 class="page-title">Let’s make<br><em>something happen.</em></h1>
         <p class="page-subtitle">Open for jobs, innovative projects, and any collaboration opportunities.</p>
       </div>
 
@@ -1002,6 +896,35 @@
 
   <script>
     const projectData = {
+      'ingreed': {
+        tag: 'Product Design — UX/UI Concept',
+        title: 'Ingreed',
+        hook: 'Personal preferences. A connected shopping journey.',
+        role: 'UX/UI Designer',
+        year: '2024',
+        heroImage: 'image&video/ingreed/cover.svg',
+        extraMeta: `<div class="detail-sidebar-label">Project stage</div><div class="detail-sidebar-val">Design concept</div><div class="detail-sidebar-label" style="margin-top:20px">Design scope</div><div class="detail-sidebar-val">User flow<br>Mobile interface design<br>Preference-based discovery</div>`,
+        htmlContent: `
+          <div class="cs-section">
+            <h2 class="cs-heading">01. Designed around personal preferences</h2>
+            <p class="cs-paragraph">Ingreed explores a grocery-shopping experience shaped by dietary preferences, nutritional goals and budget. I designed the mobile interfaces and connected journey, bringing preference setup, product discovery and checkout into one coherent flow.</p>
+          </div>
+          <div class="cs-section">
+            <h2 class="cs-heading">02. Personalisation with a clear path to purchase</h2>
+            <div class="ingreed-decisions">
+              <div class="ingreed-decision"><h3>Set once, reuse</h3><p>A dedicated filter brings dietary choices, ingredient exclusions and budget together. Saved preferences keep personal priorities at the centre of future shopping journeys.</p></div>
+              <div class="ingreed-decision"><h3>Find it your way</h3><p>Search, clear categories and personalised discovery offer different routes to products. Repeat-order prompts bring familiar choices back within reach.</p></div>
+              <div class="ingreed-decision"><h3>Follow through</h3><p>Cart, confirmation and tracking extend the experience from finding an ingredient to following an order, with clear next steps throughout.</p></div>
+            </div>
+            <figure class="ingreed-figure"><a href="image&video/ingreed/functions.jpg" target="_blank" rel="noopener noreferrer"><img src="image&video/ingreed/functions.jpg" alt="Ingreed filter, home and category interface designs" loading="lazy"></a><figcaption>Three core interfaces: preferences, discovery and product categories. Open to explore.</figcaption></figure>
+          </div>
+          <div class="cs-section">
+            <h2 class="cs-heading">03. One connected journey</h2>
+            <p class="cs-paragraph">The user flow links preference setup with browsing, search, purchase and order tracking. Consistent navigation and reusable choices give the concept a clear structure from entry to completion.</p>
+            <figure class="ingreed-figure"><a href="image&video/ingreed/flow.jpg" target="_blank" rel="noopener noreferrer"><img src="image&video/ingreed/flow.jpg" alt="Ingreed user flow from preference setup through checkout and tracking" loading="lazy"></a><figcaption>End-to-end flow and original interface designs, 2024.</figcaption></figure>
+          </div>
+        `
+      },
       'visual-odyssey': {
         tag: 'Professional Cases — Visual Storytelling & Experience Architecture',
         title: 'Visual Odyssey System',
@@ -1062,7 +985,7 @@
             </p>
             
             <div class="single-photo-feature">
-              <img src="image&video/visual odyssey//photo1.jpg" alt="Visual Odyssey Live Venue Showcase">
+              <img src="image&video/visual odyssey//photo1.jpg?privacy=016" alt="Visual Odyssey Live Venue Showcase">
             </div>
             <div class="embedded-video-caption">Live execution: High-resolution digital interactive visual canvas presented on large venue displays during executive closing sessions.</div>
           </div>
@@ -1111,11 +1034,11 @@
 
             <div class="photo-feature-grid">
               <div class="photo-feature-main">
-                <img src="image&video/avatar creator//20260622 永发印务培训-19.JPG" alt="Live Workshop Engagement 1">
+                <img src="image&video/avatar creator//20260622 永发印务培训-19.JPG?privacy=016" alt="Live Workshop Engagement 1">
               </div>
               <div class="photo-feature-sub">
                 <div class="photo-feature-item">
-                  <img src="image&video/avatar creator//20260622 永发印务培训-20.JPG" alt="Live Avatar Customization 2">
+                  <img src="image&video/avatar creator//20260622 永发印务培训-20.JPG?privacy=016" alt="Live Avatar Customization 2">
                 </div>
                 <div class="photo-feature-item">
                   <img src="image&video/avatar creator//20260622 永发印务培训-29-1.JPG" alt="Live Display Sync 3">
@@ -1268,14 +1191,14 @@
             
             <div class="photo-feature-grid">
               <div class="photo-feature-main">
-                <img src="image&video/vr warrom//photo1.jpg" alt="On-site Setup 1">
+                <img src="image&video/vr warrom//photo1.jpg?privacy=016" alt="On-site Setup 1">
               </div>
               <div class="photo-feature-sub">
                 <div class="photo-feature-item">
-                  <img src="image&video/vr warrom//photo2.jpg" alt="On-site Engagement 2">
+                  <img src="image&video/vr warrom//photo2.jpg?privacy=016" alt="On-site Engagement 2">
                 </div>
                 <div class="photo-feature-item">
-                  <img src="image&video/vr warrom//photo3.jpg" alt="Executive VR Demonstration 3">
+                  <img src="image&video/vr warrom//photo3.jpg?privacy=016" alt="Executive VR Demonstration 3">
                 </div>
               </div>
             </div>
@@ -1298,14 +1221,14 @@
         hook: 'Steering C-suite consensus across global cultures and complex domains.',
         role: 'Lead Workshop Facilitator',
         year: '2024 – 2026',
-        heroImage: 'image&video/facilitation//photo3.jpg',
+        heroImage: 'image&video/facilitation//photo3.jpg?privacy=016',
         htmlContent: `<p class="cs-paragraph">Facilitated 20+ live executive sessions for global leaders, driving alignment and collaborative decision-making across complex environments.</p>`
       },
       'ai-worldcafe': {
         tag: 'Innovation Strategist & Researcher — 2024–2026',
-        title: '4D AI Worldcafe: Spatial Intelligence',
-        hook: 'Unlocking Human-AI co-creation from text to 4D spatial intelligence.',
-        role: 'Lead Researcher & Experience Owner',
+        title: 'AI Worldcafe',
+        hook: 'Exploring AI applications through hands-on tools, business scenarios and cross-functional co-creation.',
+        role: 'Experience Co-developer; Spatial AI Presenter & Facilitator',
         year: '2024 – 2026',
         heroImage: 'image&video/4d//photo2.jpg',
         extraMeta: `
@@ -1325,7 +1248,7 @@
               When cross-functional leaders from global enterprises—ranging from C-Suite decision-makers to finance, IT, tax, and marketing experts—gather at the Innovation Hub, they come with a shared challenge: how to demystify emerging technologies and turn abstract concepts into practical business value.
             </p>
             <p class="cs-paragraph">
-              <strong>4D AI Worldcafe</strong> was designed to bridge this exact gap. It shifts the conversation from passive observation to an active exploration of technological paradigms, helping diverse teams understand industry trends, spark strategic foresight, and build alignment on future roadmaps.
+              <strong>AI Worldcafe</strong> was designed to bridge this exact gap. It shifts the conversation from passive observation to an active exploration of technological paradigms, helping diverse teams understand industry trends, spark strategic foresight, and build alignment on future roadmaps.
             </p>
           </div>
 
@@ -1338,14 +1261,14 @@
               <strong>1. Skill Acquisition & Applied Workflows:</strong> Guiding participants to master generative AI prompts and workflow logic, showing how AI agents can augment complex business functions.
             </p>
             <p class="cs-paragraph">
-              <strong>2. Dimensional Evolution:</strong> Demonstrating the spatial trajectory of AI capabilities—moving from 1D text agents and 2D visual outputs to 3D models and 4D spatial intelligence environments.
+              <strong>2. Dimensional Evolution:</strong> Using a four-station narrative to explore text and agents, image generation, video generation and spatial intelligence, connecting emerging capabilities with future applications across sectors.
             </p>
             <p class="cs-paragraph">
               <strong>3. Peer Knowledge Exchange:</strong> Creating a collaborative Worldcafe setting where experts from sales, finance, and tech exchange unique perspectives, discovering unexpected cross-departmental application scenarios.
             </p>
 
             <div class="single-photo-feature">
-              <img src="image&video/4d//photo1.jpg" alt="4D Spatial Intelligence Hands-on Experience Showcase">
+              <img src="image&video/4d//photo1.jpg?privacy=016" alt="4D Spatial Intelligence Hands-on Experience Showcase">
             </div>
             <div class="embedded-video-caption">Live execution: Facilitating cross-functional teams through hands-on spatial AI co-creation and interactive worldbuilding.</div>
           </div>
@@ -1353,7 +1276,7 @@
           <div class="cs-section">
             <h2 class="cs-heading">03. Impact & Future Trajectory</h2>
             <p class="cs-paragraph">
-              By blending hands-on skill building with strategic brainstorming, the workshop empowers enterprise teams to walk away with actionable insights and confidence. It transforms technology uncertainty into concrete organizational capability and long-term innovation momentum.
+              I co-developed the overall AI Worldcafe experience with the team. Within it, I also presented and facilitated the spatial-intelligence station, exploring how AI could understand, simulate and generate environments. The focus covered future applications across sectors, including design review, spatial planning, customer experiences and virtual-physical collaboration.
             </p>
           </div>
         `
@@ -1406,48 +1329,6 @@
       });
     }
 
-    let isInteractive = false;
-
-    function updateHomeScroll() {
-      const homeSec = document.getElementById('home');
-      if (!homeSec.classList.contains('active')) return;
-
-      const scrollTop = window.scrollY;
-      const fadeOutDistance = 70;  
-      const fadeInDistance = 150;  
-
-      const elementsA = document.querySelectorAll('.state-a');
-      const elementsB = document.querySelectorAll('.state-b');
-      const tagline = document.getElementById('tagline');
-      const heroSticky = document.getElementById('hero-sticky');
-
-      let opacityA = Math.max(1 - (scrollTop / fadeOutDistance), 0);
-      elementsA.forEach(el => el.style.opacity = opacityA);
-
-      let opacityB = 0;
-      if (scrollTop > fadeOutDistance) {
-        opacityB = Math.min((scrollTop - fadeOutDistance) / (fadeInDistance - fadeOutDistance), 1);
-      }
-      elementsB.forEach(el => el.style.opacity = opacityB);
-      tagline.style.opacity = opacityB;
-
-      if (scrollTop >= 120) {
-        heroSticky.classList.add('interactive-mode');
-        isInteractive = true;
-      } else {
-        heroSticky.classList.remove('interactive-mode');
-        isInteractive = false;
-      }
-    }
-
-    window.addEventListener('scroll', updateHomeScroll);
-
-    function handleGroupClick(categoryId) {
-      if (isInteractive) {
-        navigateToCategory(categoryId);
-      }
-    }
-
     function showSection(sectionId) {
       if (sectionId !== 'project-detail') {
         document.querySelectorAll('#project-detail iframe').forEach(player => player.remove());
@@ -1462,9 +1343,7 @@
       if(navLink) navLink.classList.add('active');
       
       window.scrollTo({ top: 0, behavior: 'auto' });
-      if (sectionId === 'home') {
-        updateHomeScroll();
-      }
+
     }
 
     function navigateToCategory(categoryId) {
@@ -1479,6 +1358,7 @@
       }, 100);
     }
 
+    if (new URLSearchParams(location.search).get('section') === 'cv') showSection('cv');
     const previewProject = new URLSearchParams(location.search).get('project');
     if (previewProject && Object.prototype.hasOwnProperty.call(projectData, previewProject)) {
       openProjectDetail(previewProject);
