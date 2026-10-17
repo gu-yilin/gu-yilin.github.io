@@ -648,8 +648,10 @@
         <p class="page-subtitle">Exploration across experience design, creative technology, and innovation strategy.</p>
       </div>
 
+<div class="work-index" role="navigation" aria-label="Browse project categories"><a href="#professional-cases" onclick="navigateToCategory('professional-cases'); return false;"><span aria-hidden="true">01</span>Professional Cases<span aria-hidden="true">↘</span></a><a href="#creative-projects" onclick="navigateToCategory('creative-projects'); return false;"><span aria-hidden="true">02</span>Creative Technologist<span aria-hidden="true">↘</span></a><a href="#product-design" onclick="navigateToCategory('product-design'); return false;"><span aria-hidden="true">03</span>Product Design<span aria-hidden="true">↘</span></a><a href="#presentation-insights" onclick="navigateToCategory('presentation-insights'); return false;"><span aria-hidden="true">04</span>Innovation Strategist & Researcher<span aria-hidden="true">↘</span></a></div>
+
       <!-- Category 1: Professional Cases -->
-      <h2 id="professional-cases" class="category-title">Professional Cases</h2>
+      <h2 id="professional-cases" class="category-title"><span class="category-number" aria-hidden="true">01</span><span class="category-name">Professional Cases</span><span class="category-count">03 projects</span></h2><p class="category-description">Experience design & facilitation</p>
       <div class="grid">
         <div class="card" role="link" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="openProjectDetail('workshop-design')">
           <div class="card-image-wrapper">
@@ -686,7 +688,7 @@
       </div>
 
       <!-- Category 2: Creative Technologist -->
-      <h2 id="creative-projects" class="category-title">Creative Technologist</h2>
+      <h2 id="creative-projects" class="category-title"><span class="category-number" aria-hidden="true">02</span><span class="category-name">Creative Technologist</span><span class="category-count">04 projects</span></h2><p class="category-description">Interactive systems & immersive play</p>
       <div class="grid">
         <div class="card" role="link" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="openProjectDetail('avatar-creator')">
           <div class="card-image-wrapper">
@@ -720,10 +722,16 @@
           </div>
           <p class="card-hook">Immersive spatial collaboration for high-stakes medical operations.</p>
         </div>
+
+        <div class="card" role="link" tabindex="0" onclick="openProjectDetail('cube')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}">
+          <div class="card-image-wrapper cube-cover"><img src="image&video/cube/youtube-cover.jpg" alt="CUBE game artwork with Will and a colourful floating world" class="card-image" loading="lazy"></div>
+          <div class="card-header-line"><h3 class="card-title">CUBE</h3><span class="card-year">2023</span></div>
+          <p class="card-hook">Solving puzzles across dimensions: designing an immersive, playful game that brings digital worlds into physical interaction.</p>
+        </div>
       </div>
 
       <!-- Product Design: supporting concept work -->
-      <h2 id="product-design" class="category-title">Product Design</h2>
+      <h2 id="product-design" class="category-title"><span class="category-number" aria-hidden="true">03</span><span class="category-name">Product Design</span><span class="category-count">01 project</span></h2><p class="category-description">Interfaces & everyday experiences</p>
       <div class="grid">
         <div class="card" role="button" tabindex="0" onclick="openProjectDetail('ingreed')" onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openProjectDetail('ingreed'); }">
           <div class="card-image-wrapper">
@@ -736,7 +744,7 @@
       </div>
 
       <!-- Category 3: Innovation Strategist & Researcher -->
-      <h2 id="presentation-insights" class="category-title">Innovation Strategist & Researcher</h2>
+      <h2 id="presentation-insights" class="category-title"><span class="category-number" aria-hidden="true">04</span><span class="category-name">Innovation Strategist & Researcher</span><span class="category-count">01 project</span></h2><p class="category-description">Emerging technology & collaborative exploration</p>
       <div class="grid">
         <div class="card" role="link" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="openProjectDetail('ai-worldcafe')">
           <div class="card-image-wrapper">
@@ -785,84 +793,7 @@
     </section>
 
     <!-- 4. CV Page -->
-    <section id="cv" class="page-section">
-      <div class="page-header">
-        <p class="eyebrow">Background / Experience</p><h1 class="page-title">A connected <em>practice.</em></h1>
-        <p class="page-subtitle">Designing human-centred experiences where AI, emerging technologies, and strategic innovation meet.</p>
-      </div>
-
-      <div class="cv-layout">
-        <!-- 左侧栏：Skills 列表 -->
-<div class="cv-sidebar"><div class="cv-downloads"><a href="cv/YilinGu-CV.pdf" target="_blank" rel="noopener">Download CV · PDF ↗</a></div><div class="cv-sidebar-block"><h3 class="cv-sidebar-title">Design</h3><ul class="cv-sidebar-list"><li>Design thinking</li><li>Workshop design and facilitation</li><li>User research</li><li>Interaction design</li><li>User flows</li><li>Prototyping</li><li>Strategic storytelling</li><li>Stakeholder collaboration</li></ul></div><div class="cv-sidebar-block"><h3 class="cv-sidebar-title">Tools</h3><ul class="cv-sidebar-list"><li>Figma</li><li>Adobe Creative Suite</li><li>Python</li><li>JavaScript</li><li>Arduino</li></ul></div><div class="cv-sidebar-block"><h3 class="cv-sidebar-title">Languages</h3><ul class="cv-sidebar-list"><li>Chinese (native)</li><li>English (professional working proficiency)</li><li>Italian</li></ul></div></div>
-        <!-- 右侧栏：Profile, Experience, Education & Projects -->
-        <div class="cv-main">
-          <div class="cv-profile"><p>Experience designer and creative technologist with experience at EY wavespace and in product management. Connects AI insights and business challenges with workshop experiences, user flows and interactive prototypes. Currently pursuing an MSc in Digital and Interaction Design at Politecnico di Milano, building on architecture and creative computing.</p></div>
-
-<div class="cv-divider">Professional Experience</div>
-<div class="cv-timeline-item"><div class="cv-timeline-header"><span class="cv-role">Strategic Experience Designer / AI Innovation Consultant</span><span class="cv-period">Dec 2024 - Aug 2026</span></div><div class="cv-company">EY wavespace · Shanghai, China</div><div class="cv-desc"><ul><li>Designed 50+ themed workshop frameworks, using design thinking, co-creation and modular exercises to help enterprise teams explore strategic challenges.</li><li>Co-developed AI Worldcafe, a signature hands-on experience combining text, image, video and spatial AI exploration with business scenarios, cross-functional dialogue and participant co-creation.</li><li>Designed and developed a web-based avatar experience used in multiple live workshops, connecting participant customisation with shared venue displays.</li><li>Collaborated with cross-sector enterprise clients and multidisciplinary teams, with a strong focus on finance and functions spanning tax, IT, sales and marketing, across consumer businesses, technology, life sciences and real estate.</li></ul></div></div>
-<div class="cv-timeline-item"><div class="cv-timeline-header"><span class="cv-role">Product Manager</span><span class="cv-period">Mar 2024 - Nov 2024</span></div><div class="cv-company">Nanjing LES Cybersecurity and IT Research Institute · Nanjing, China</div><div class="cv-desc"><ul><li>Conducted user, requirements and competitive research; translated needs into user flows, interaction prototypes and functional specifications.</li><li>Worked with development and testing teams on usability analysis, design refinement and product iteration.</li></ul></div></div>
-          <!-- 教育经历 (Education) -->
-          <div class="cv-divider">Education</div>
-
-          <div class="cv-timeline-item">
-            <div class="cv-timeline-header">
-              <span class="cv-role">MSc Digital and Interaction Design</span>
-              <span class="cv-period">Sep 2026 – Present</span>
-            </div>
-            <div class="cv-company">Politecnico di Milano · Milan, Italy</div>
-            <div class="cv-focus-tags">
-              <span>Digital Experience Design</span>
-              <span>Interaction Design</span>
-              <span>Human-Computer Interaction</span>
-              <span>Service Innovation</span>
-              <span>Emerging Technologies</span>
-            </div>
-          </div>
-
-          <div class="cv-timeline-item">
-            <div class="cv-timeline-header">
-              <span class="cv-role">MSc Computing and Creative Industry <em style="font-weight:400; font-style:normal; color:#888;">(Distinction)</em></span>
-              <span class="cv-period">Oct 2022 – Dec 2023</span>
-            </div>
-            <div class="cv-company">University of the Arts London (UAL) · London, UK</div>
-            <div class="cv-focus-tags">
-              <span>Creative Computing</span>
-              <span>Machine Intelligence</span>
-              <span>Physical Computing</span>
-              <span>Computational Creativity</span>
-              <span>Interactive Media</span>
-              <span>Computational Environments</span>
-            </div>
-          </div>
-
-          <div class="cv-timeline-item">
-            <div class="cv-timeline-header">
-              <span class="cv-role">BA (Hons) Architecture <em style="font-weight:400; font-style:normal; color:#888;">(2:1 Honours)</em></span>
-              <span class="cv-period">Sep 2019 – Jun 2022</span>
-            </div>
-            <div class="cv-company">The University of Manchester · Manchester, UK</div>
-            <div class="cv-focus-tags">
-              <span>Spatial Design</span>
-              <span>Environmental Design</span>
-              <span>Systems Thinking</span>
-              <span>Digital Fabrication</span>
-            </div>
-          </div>
-
-          <div class="cv-timeline-item">
-            <div class="cv-timeline-header">
-              <span class="cv-role">Google UX Design Professional Certificate</span>
-              <span class="cv-period">Nov 2023 – Jun 2024</span>
-            </div>
-          </div>
-
-<div class="cv-divider">Selected Projects</div><div class="cv-timeline-item"><div class="cv-timeline-header"><span class="cv-role">AI Worldcafe</span><div class="cv-project-meta"><span class="cv-period">2024–2026</span><a class="cv-project-link" href="?project=ai-worldcafe" onclick="openProjectDetail('ai-worldcafe'); return false;" aria-label="View AI Worldcafe project">View project ↗</a></div></div><div class="cv-desc">Co-developed a signature EY wavespace experience combining text, image, video and spatial AI with hands-on exploration, business scenarios and cross-functional co-creation.</div></div>
-<div class="cv-timeline-item"><div class="cv-timeline-header"><span class="cv-role">Avatar Creator</span><div class="cv-project-meta"><span class="cv-period">2026</span><a class="cv-project-link" href="?project=avatar-creator" onclick="openProjectDetail('avatar-creator'); return false;" aria-label="View Avatar Creator project">View project ↗</a></div></div><div class="cv-desc">Solo developer and experience designer. Built touchscreen customisation, signatures, live display updates and group-photo export for workshop arrivals.</div></div>
-<div class="cv-timeline-item"><div class="cv-timeline-header"><span class="cv-role">Ingreed</span><div class="cv-project-meta"><span class="cv-period">2024</span><a class="cv-project-link" href="?project=ingreed" onclick="openProjectDetail('ingreed'); return false;" aria-label="View Ingreed project">View project ↗</a></div></div><div class="cv-desc">Designed a mobile shopping concept with reusable dietary filters, product discovery, checkout and order tracking.</div></div>
-<div class="cv-timeline-item"><div class="cv-timeline-header"><span class="cv-role">Window of the Mind</span><div class="cv-project-meta"><span class="cv-period">2023</span><a class="cv-project-link" href="?project=window-of-the-mind" onclick="openProjectDetail('window-of-the-mind'); return false;" aria-label="View Window of the Mind project">View project ↗</a></div></div><div class="cv-desc">Developed a pulse-sensor and Python installation using pix2pix to generate garden imagery; exhibited at UAL Creative Computing Institute.</div></div>
-        </div>
-      </div>
-    </section>
+    <section id="cv" class="page-section"><div class="page-header"><p class="eyebrow">Background / Experience</p><h1 class="page-title">A connected <em>practice.</em></h1><p class="page-subtitle">Experience design &amp; creative technology — from user insight to interactive prototypes and collaborative innovation.</p></div><div class="cv-layout"><div class="cv-sidebar"><div class="cv-downloads"><a href="CV/YilinGu-CV.pdf" target="_blank" rel="noopener">Download CV · PDF ↗</a></div><div class="cv-sidebar-block"><h3 class="cv-sidebar-title">Design</h3><dl class="cv-capabilities"><div><dt>Research into product decisions</dt><dd>User research, competitive analysis, problem framing and user flows; Double Diamond and user-centred design.</dd></div><div><dt>Interaction across screen and space</dt><dd>UX/UI, interactive prototyping, 3D level design and physical-digital experiences.</dd></div><div><dt>Co-creation into shared direction</dt><dd>Workshop design and facilitation, stakeholder collaboration and visual storytelling.</dd></div></dl></div><div class="cv-sidebar-block"><h3 class="cv-sidebar-title">Tools</h3><dl class="cv-capabilities"><div><dt>Interfaces &amp; systems</dt><dd>Figma: components, auto-layout, variants, responsive layouts and interactive prototypes.</dd></div><div><dt>Functional &amp; physical prototypes</dt><dd>JavaScript, Python, Unity/C# and Arduino; sensor input and infrared touch interaction.</dd></div><div><dt>Spatial concepts &amp; making</dt><dd>Blender, Rhino, Cinema 4D and SketchUp; 3D modelling and 3D-printed prototypes.</dd></div><div><dt>Collaboration &amp; communication</dt><dd>Miro, Adobe Creative Suite and AI-assisted image/video exploration for workshops and visual narratives.</dd></div></dl></div><div class="cv-sidebar-block"><h3 class="cv-sidebar-title">Languages</h3><ul class="cv-sidebar-list"><li>Chinese · Native</li><li>English · C1</li><li>Italian</li></ul></div></div><div class="cv-main"><div class="cv-divider">Education</div><div class="cv-timeline-item"><div class="cv-timeline-header"><span class="cv-role">MSc Digital and Interaction Design</span><span class="cv-period">Sep 2026 - Jul 2028 (expected)</span></div><div class="cv-company">Politecnico di Milano</div><div class="cv-focus-tags"><span>Digital Experience Design</span><span>Interaction Design</span><span>Human-Computer Interaction</span><span>Service Innovation</span><span>Emerging Technologies</span></div></div><div class="cv-timeline-item"><div class="cv-timeline-header"><span class="cv-role">MSc Computing and Creative Industry</span><span class="cv-period">Oct 2022 - Dec 2023 · Distinction</span></div><div class="cv-company">University of the Arts London</div><div class="cv-focus-tags"><span>Creative Computing</span><span>Machine Intelligence</span><span>Physical Computing</span><span>Computational Creativity</span><span>Interactive Media</span><span>Computational Environments</span></div></div><div class="cv-timeline-item"><div class="cv-timeline-header"><span class="cv-role">BA (Hons) Architecture</span><span class="cv-period">Sep 2019 - Jun 2022 · 2:1 Honours</span></div><div class="cv-company">University of Manchester</div><div class="cv-focus-tags"><span>Spatial Design</span><span>Environmental Design</span><span>Systems Thinking</span><span>Digital Fabrication</span></div></div><p class="cv-certificate">Google UX Design Professional Certificate · 2024</p><div class="cv-divider">Professional Experience</div><div class="cv-timeline-item"><div class="cv-timeline-header"><span class="cv-role">Strategic Experience Designer / AI Innovation Consultant</span><span class="cv-period">Dec 2024 - Aug 2026</span></div><div class="cv-company">EY wavespace · Shanghai, China</div><div class="cv-desc"><ul><li>Designed 50+ workshop frameworks, translating enterprise challenges into structured agendas, co-creation exercises and visual narratives for cross-functional teams.</li><li>Independently designed and developed Avatar Creator, combining touchscreen personalisation, signatures and live group displays; deployed in multiple client workshops.</li><li>Co-developed AI Worldcafe, connecting text, image, video and spatial AI with business scenarios and hands-on exploration; facilitated the spatial-intelligence station.</li><li>Collaborated with clients across consumer businesses, technology, life sciences and real estate, including finance teams; made complex ideas accessible through facilitation and AI-assisted visual storytelling.</li></ul></div></div><div class="cv-timeline-item"><div class="cv-timeline-header"><span class="cv-role">Product Manager</span><span class="cv-period">Mar 2024 - Nov 2024</span></div><div class="cv-company">Nanjing LES Cybersecurity and IT Research Institute · Nanjing, China</div><div class="cv-desc"><ul><li>Conducted user and competitive research; translated findings into user flows, interaction prototypes and functional specifications.</li><li>Worked with development and testing teams on usability analysis, design refinement and product iteration.</li></ul></div></div><div class="cv-divider">Selected Projects</div><div class="cv-timeline-item"><div class="cv-timeline-header"><span class="cv-role">Avatar Creator</span><div class="cv-project-meta"><span class="cv-period">2026</span><a class="cv-project-link" href="?project=avatar-creator" onclick="openProjectDetail('avatar-creator'); return false;" aria-label="View Avatar Creator project">View project ↗</a></div></div><div class="cv-desc">Solo design and development of a touchscreen-to-live-display experience, used in multiple client workshops.</div></div><div class="cv-timeline-item"><div class="cv-timeline-header"><span class="cv-role">CUBE</span><div class="cv-project-meta"><span class="cv-period">2023</span><a class="cv-project-link" href="?project=cube" onclick="openProjectDetail('cube'); return false;" aria-label="View CUBE project">View project ↗</a></div></div><div class="cv-desc">3D design and Unity/C# programming for cross-dimensional puzzle play; connected infrared touch input with game controls.</div></div><div class="cv-timeline-item"><div class="cv-timeline-header"><span class="cv-role">Window of the Mind</span><div class="cv-project-meta"><span class="cv-period">2023</span><a class="cv-project-link" href="?project=window-of-the-mind" onclick="openProjectDetail('window-of-the-mind'); return false;" aria-label="View Window of the Mind project">View project ↗</a></div></div><div class="cv-desc">Connected pulse sensing, Python and pix2pix image generation in an interactive installation exhibited at UAL.</div></div><div class="cv-timeline-item"><div class="cv-timeline-header"><span class="cv-role">AI Worldcafe</span><div class="cv-project-meta"><span class="cv-period">2024-2026</span><a class="cv-project-link" href="?project=ai-worldcafe" onclick="openProjectDetail('ai-worldcafe'); return false;" aria-label="View AI Worldcafe project">View project ↗</a></div></div><div class="cv-desc">Co-developed a hands-on AI experience linking emerging capabilities with business scenarios and participant co-creation.</div></div><div class="cv-timeline-item"><div class="cv-timeline-header"><span class="cv-role">Ingreed</span><div class="cv-project-meta"><span class="cv-period">2024</span><a class="cv-project-link" href="?project=ingreed" onclick="openProjectDetail('ingreed'); return false;" aria-label="View Ingreed project">View project ↗</a></div></div><div class="cv-desc">UX/UI concept connecting dietary preferences, product discovery, checkout and order tracking.</div></div></div></div></section>
 
     <!-- 5. Contact Page -->
     <section id="contact" class="page-section">
@@ -896,6 +827,46 @@
 
   <script>
     const projectData = {
+      'cube': {
+        tag: 'Creative Technologist — Hybrid Game & Physical Interaction',
+        title: 'CUBE',
+        hook: 'Solving puzzles across dimensions: designing an immersive, playful game that brings digital worlds into physical interaction.',
+        role: '3D Designer & Programmer',
+        year: '2023',
+        heroImage: 'image&video/cube/youtube-cover.jpg',
+        extraMeta: `<div class="detail-sidebar-label">Team</div><div class="detail-sidebar-val">Yilin Gu &amp; Yuwei Fei</div><div class="detail-sidebar-label">Platform &amp; Tools</div><div class="detail-sidebar-val">Unity<br>C# scripting<br>Infrared touch frame</div><div class="detail-sidebar-label">Format</div><div class="detail-sidebar-val">Physical &amp; virtual hybrid game</div>`,
+        htmlContent: `
+          <div class="cs-section">
+            <h2 class="cs-heading">01. A Broken Cube, a Different Perspective</h2>
+            <p class="cs-paragraph">Annya is heartbroken when her favourite cube breaks. In a dream, the spirit Will offers a way to repair it: a series of challenges that unfold across 2D scenes and 3D worlds. Players gather fragments, rotate the cube and explore its environments to retrieve gems.</p>
+            <p class="cs-paragraph">Developed with Yuwei Fei, <strong>CUBE</strong> brings a story of loss and hope into a physical and virtual game. My role focused on <strong>3D design and programming</strong>. Built in Unity with C# scripting, the experience uses changing perspectives and progressively richer interactions to frame a journey of perseverance and repair.</p>
+            <div class="embedded-video-container mind-video">
+              <iframe data-video-src="https://www.youtube-nocookie.com/embed/4GfWz99p-Ko?playsinline=1&amp;rel=0" title="CUBE — Game Demo" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="mind-project-links"><a href="https://www.youtube.com/watch?v=4GfWz99p-Ko" target="_blank" rel="noopener noreferrer">Watch game demo ↗</a></div>
+          </div>
+          <div class="cs-section"><h2 class="cs-heading">02. From Discovery to Repair</h2><p class="cs-paragraph">The game journey builds from dialogue and simple clicks to rotation and first-person navigation. Each stage introduces a new way to understand the same fragmented world.</p><div class="cube-journey"><article class="cube-step"><img src="image&video/cube/discovery.webp" alt="CUBE discovery gameplay" loading="lazy"><h3>Discovery</h3><p>Meet Annya and Will through dialogue. A broken toy cube sets the goal, while Will introduces each challenge and offers direction.</p></article><article class="cube-step"><img src="image&video/cube/onboarding.webp" alt="CUBE onboarding gameplay" loading="lazy"><h3>Onboarding</h3><p>Click to collect fragments in 2D, then move into a 3D cube environment. Dragging and rotation introduce a new way to explore and reconstruct the cube.</p></article><article class="cube-step"><img src="image&video/cube/exploration.webp" alt="CUBE scaffolding gameplay" loading="lazy"><h3>Scaffolding</h3><p>Progress from static puzzles into first-person exploration across the two dimensions, navigating scenes and collecting gems.</p></article><article class="cube-step"><img src="image&video/cube/ending.webp" alt="CUBE endgame gameplay" loading="lazy"><h3>Endgame</h3><p>Complete the challenges to restore Annya’s treasured cube. The ending brings the mechanical goal and the story of repair together.</p></article></div></div>
+          <div class="cs-section cube-worlds">
+            <h2 class="cs-heading">03. From 2D Puzzles to Immersive 3D Worlds</h2>
+            <p class="cs-paragraph">How can a change of dimension feel like a natural next step in play? I connected the 2D and 3D stages through one continuous goal: repairing the cube. Collecting fragments leads to assembling and rotating a world, then stepping inside it to explore. The perspective changes; the purpose stays clear.</p>
+            <p class="cs-paragraph">As the team's <strong>3D Designer &amp; Programmer</strong>, I focused on <strong>3D environments, level design and Unity/C# implementation</strong>, connecting scene progression with the player's evolving actions. The cube acts as the bridge between an illustrated puzzle and a navigable space.</p>
+            <div class="cube-transition">
+              <figure><a href="image&video/cube/transition-2d.webp" target="_blank" rel="noopener noreferrer"><img src="image&video/cube/transition-2d.webp" alt="2D illustrated room with cube fragments to collect" loading="lazy"></a><figcaption><strong>01 / Collect in 2D</strong>Find fragments within the illustrated scene.</figcaption></figure>
+              <figure><a href="image&video/cube/transition-cube.webp" target="_blank" rel="noopener noreferrer"><img src="image&video/cube/transition-cube.webp" alt="The reconstructed cube revealed as a three-dimensional game world" loading="lazy"></a><figcaption><strong>02 / Reveal the world</strong>Reconstruct and rotate the cube to discover its spaces.</figcaption></figure>
+            </div>
+            <h3 class="cube-subheading">From looking at a world to moving through it</h3>
+            <p class="cs-paragraph">The shift to first-person exploration turns the cube from an object to manipulate into a place to inhabit. My level-design focus was to connect exploration with the gem-collection goal, using paths, bridges and recognisable environmental landmarks to give each scene a sense of direction.</p>
+            <figure class="cube-figure"><a href="image&video/cube/village-level.webp" target="_blank" rel="noopener noreferrer"><img src="image&video/cube/village-level.webp" alt="First-person view of the village level with cottages, wheat fields and mountain scenery" loading="lazy"></a><figcaption><strong>03 / Step inside</strong> · Village paths and buildings bring the miniature world to player scale.</figcaption></figure>
+            <figure class="cube-figure"><a href="image&video/cube/island-level.webp" target="_blank" rel="noopener noreferrer"><img src="image&video/cube/island-level.webp" alt="Immersive island level with a wooden bridge, water, palms and colourful vegetation" loading="lazy"></a><figcaption><strong>A new scene, a continuing goal</strong> · Bridges, water and islands create a contrasting space for exploration as the search for gems continues.</figcaption></figure>
+            <p class="cs-paragraph">Contrasting enclosed village spaces with open island scenery gives the journey a changing rhythm. The design intention is to make each new setting feel worth exploring while keeping the player's next action connected to the story of repair.</p>
+          </div>
+          <div class="cs-section"><h2 class="cs-heading">04. From Touch Input to Embodied Play</h2><p class="cs-paragraph">I used an <strong>Infrared Touch Frame</strong> to translate physical actions at the screen into game input, extending CUBE beyond conventional desktop controls. The interaction design challenge was to make a movement feel intentional, accurately captured and directly connected to what happened in the game.</p>
+            <p class="cs-paragraph">My focus was the relationship between <strong>input precision, response continuity and ease of movement</strong>: how to capture touch and dragging reliably, keep the game responding smoothly, and let players perform familiar controls through comfortable physical actions. This meant considering the sensing hardware and the Unity interaction as one connected experience.</p>
+            <div class="cube-interaction-flow" aria-label="Physical interaction sequence"><span>Physical action<br><strong>Touch &amp; drag</strong></span><span>Input capture<br><strong>Infrared touch frame</strong></span><span>Game response<br><strong>Unity interaction</strong></span></div>
+            <h3 class="cube-subheading">Making control feel direct</h3>
+            <p class="cs-paragraph">The prototype explored how screen-based actions could become embodied play: reaching to interact, dragging to manipulate and seeing the world respond. Signal, touch, drawing and rotation tests provided a way to examine this connection. The aim was to reduce the effort of operating the interface so players could stay focused on the puzzle and the world.</p><figure class="cube-figure"><a href="image&video/cube/physical-dialogue.webp" target="_blank" rel="noopener noreferrer"><img src="image&video/cube/physical-dialogue.webp" alt="Game dialogue paired with a player using the physical installation" loading="lazy"></a><figcaption>Story and physical interaction shown together.</figcaption></figure><figure class="cube-figure"><a href="image&video/cube/physical-rotation.webp" target="_blank" rel="noopener noreferrer"><img src="image&video/cube/physical-rotation.webp" alt="Cube reconstruction paired with interaction at the infrared touch frame" loading="lazy"></a><figcaption>From clicking fragments to rotating and reconstructing the cube.</figcaption></figure><figure class="cube-figure"><a href="image&video/cube/physical-exploration.webp" target="_blank" rel="noopener noreferrer"><img src="image&video/cube/physical-exploration.webp" alt="First-person world exploration paired with the physical installation" loading="lazy"></a><figcaption>Exploring the game world through the installation.</figcaption></figure></div>
+        `
+      },
       'ingreed': {
         tag: 'Product Design — UX/UI Concept',
         title: 'Ingreed',
@@ -1323,9 +1294,20 @@
       document.getElementById('d-desc').innerHTML = data.htmlContent;
       document.querySelectorAll('#d-desc iframe[data-video-src]').forEach(player => {
         // A hosted enclosing page supplies the HTTP Referer that file:// cannot.
-        player.src = location.protocol === 'file:'
-          ? player.dataset.hostedPlayer
-          : player.dataset.videoSrc;
+        if (location.protocol === 'file:' && !player.dataset.hostedPlayer) {
+          const link = document.createElement('a');
+          link.href = 'https://www.youtube.com/watch?v=4GfWz99p-Ko';
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+          link.textContent = 'Watch the CUBE game demo on YouTube ↗';
+          const container = player.parentElement;
+          container.classList.add('cube-video-link');
+          player.replaceWith(link);
+        } else {
+          player.src = location.protocol === 'file:'
+            ? player.dataset.hostedPlayer
+            : player.dataset.videoSrc;
+        }
       });
     }
 

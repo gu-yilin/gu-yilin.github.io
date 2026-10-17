@@ -48,3 +48,58 @@ em{font-family:var(--serif);font-weight:400;}
 .cv-project-link:hover {text-decoration:underline;text-underline-offset:3px;}
 .cv-downloads {display:flex;flex-direction:column;gap:12px;margin-bottom:28px;padding-bottom:20px;border-bottom:1px solid var(--line);font:12px monospace;color:var(--accent);}
 @media(max-width:760px){.project-return{top:70px;padding:12px 24px;}#project-detail{padding-top:96px;}.cv-project-meta{gap:12px;}.cv-project-link{font-size:10px;}}
+
+/* CUBE / original portfolio artwork, responsive case-study additions. */
+.cube-cover,.cube-cover .card-image {background:#edf0df;}
+.cube-cover .card-image {object-fit:cover;}
+#project-detail[data-project="cube"] .detail-hero-media {height:auto;aspect-ratio:16/9;background:#edf0df;}
+#project-detail[data-project="cube"] .detail-hero-media img {object-fit:cover;}
+.cube-figure {margin:24px 0;}
+.cube-figure img {display:block;width:100%;height:auto;}
+.cube-figure figcaption,.cube-characters figcaption {font:11px/1.65 monospace;color:var(--muted);margin-top:9px;}
+.cube-journey {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 22px;margin-top:25px;}
+.cube-step img {width:100%;height:auto;display:block;}
+.cube-step h3 {font-size:20px;font-weight:500;margin:15px 0 9px;letter-spacing:-.02em;}
+.cube-step p {font-size:14px;line-height:1.7;color:#45493f;}
+.cube-characters {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin:24px 0;}
+.cube-characters figure {background:#e9e9df;text-align:center;padding:22px;}
+.cube-characters img {height:150px;width:100%;object-fit:contain;}
+.cube-video-link {display:flex;align-items:center;justify-content:center;background:#e9e9df;color:var(--accent);padding:24px;text-align:center;}
+@media(max-width:600px){.cube-journey{grid-template-columns:1fr;}.cube-characters{gap:12px;}.cube-characters figure{padding:14px;}.cube-characters img{height:110px;}}
+
+/* CUBE: 2D-to-3D progression and spatial level design. */
+.cube-transition {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin:30px 0 38px;}
+.cube-transition figure {margin:0;min-width:0;}
+.cube-transition img {display:block;width:100%;height:auto;}
+.cube-transition figcaption {font-size:13px;line-height:1.65;color:var(--muted);margin-top:12px;}
+.cube-transition figcaption strong {display:block;color:var(--ink);font-size:14px;margin-bottom:4px;}
+.cube-subheading {font-size:23px;font-weight:500;line-height:1.3;margin:32px 0 18px;letter-spacing:-.02em;}
+@media(max-width:600px){.cube-transition{grid-template-columns:1fr;gap:26px;}.cube-subheading{font-size:21px;}}
+
+/* Work directory: clear editorial hierarchy and direct category access. */
+.work-index {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--line);margin:0 0 54px;}
+.work-index a {display:flex;align-items:baseline;gap:13px;padding:17px 16px 17px 0;border-bottom:1px solid var(--line);font-size:15px;line-height:1.5;color:var(--ink);}
+.work-index a:nth-child(even){padding-left:24px;}
+.work-index a span:first-child {font:11px monospace;color:var(--accent);}
+.work-index a span:last-child {margin-left:auto;color:var(--accent);}
+.work-index a:hover {color:var(--accent);background:#eaeadd;}
+#projects .category-title {display:flex;align-items:baseline;gap:18px;font-family:"Helvetica Neue",Arial,sans-serif;font-size:clamp(28px,3.2vw,44px);font-weight:500;line-height:1.15;letter-spacing:-.045em;text-transform:none;color:var(--ink);border-top:2px solid var(--ink);padding-top:24px;margin:82px 0 12px;}
+#projects .category-title:first-of-type {margin-top:0;}
+.category-number {font:12px monospace;letter-spacing:0;color:var(--accent);flex-shrink:0;}
+.category-name {max-width:850px;}
+.category-count {margin-left:auto;white-space:nowrap;font:11px monospace;letter-spacing:0;color:var(--muted);}
+.category-description {margin:0 0 32px 36px;color:var(--muted);font-size:14px;line-height:1.6;}
+.cube-interaction-flow {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:28px 0;}
+.cube-interaction-flow span {padding:20px 12px;font:11px/1.8 monospace;color:var(--muted);}
+.cube-interaction-flow span+span {border-left:1px solid var(--line);}
+.cube-interaction-flow strong {display:block;font:500 15px/1.5 "Helvetica Neue",Arial,sans-serif;color:var(--ink);}
+@media(max-width:760px){.work-index{grid-template-columns:1fr;margin-bottom:40px;}.work-index a,.work-index a:nth-child(even){padding:14px 0;font-size:14px;}#projects .category-title{font-size:29px;gap:12px;flex-wrap:wrap;margin-top:58px;padding-top:20px;}.category-number{width:20px;}.category-name{flex:1;min-width:0;}.category-count{width:100%;margin-left:32px;}.category-description{margin-left:32px;margin-bottom:26px;font-size:13px;}.cube-interaction-flow{grid-template-columns:1fr;}.cube-interaction-flow span{padding:14px 0;}.cube-interaction-flow span+span{border-left:0;border-top:1px solid var(--line);}}
+
+/* CV: evidence-led capability combinations. */
+#cv .cv-layout{grid-template-columns:265px minmax(0,1fr);gap:64px;}
+.cv-capabilities{margin:0;}.cv-capabilities>div{margin:0 0 22px;}.cv-capabilities dt{font-size:14px;font-weight:500;line-height:1.4;color:var(--ink);margin-bottom:6px;}.cv-capabilities dd{margin:0;font-size:13px;line-height:1.65;color:var(--muted);}
+#cv .cv-sidebar-title{font:12px monospace;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;}
+#cv .cv-timeline-header{flex-wrap:wrap;gap:8px 18px;}#cv .cv-role{line-height:1.4;}#cv .cv-period{line-height:1.6;}
+#cv .cv-divider:first-child{margin-top:0;}.cv-certificate{font-size:13px;color:var(--muted);line-height:1.5;margin:0 0 32px;}
+@media(max-width:950px){#cv .cv-layout{grid-template-columns:220px minmax(0,1fr);gap:32px;}}
+@media(max-width:760px){#cv .cv-layout{display:flex;flex-direction:column-reverse;gap:36px;}#cv .cv-sidebar{width:100%;border-top:1px solid var(--line);padding-top:28px;}#cv .cv-project-meta{flex-wrap:wrap;}#cv .cv-downloads{font-size:14px;}}
