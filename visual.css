@@ -103,3 +103,6 @@ em{font-family:var(--serif);font-weight:400;}
 #cv .cv-divider:first-child{margin-top:0;}.cv-certificate{font-size:13px;color:var(--muted);line-height:1.5;margin:0 0 32px;}
 @media(max-width:950px){#cv .cv-layout{grid-template-columns:220px minmax(0,1fr);gap:32px;}}
 @media(max-width:760px){#cv .cv-layout{display:flex;flex-direction:column-reverse;gap:36px;}#cv .cv-sidebar{width:100%;border-top:1px solid var(--line);padding-top:28px;}#cv .cv-project-meta{flex-wrap:wrap;}#cv .cv-downloads{font-size:14px;}}
+
+/* CV v0.24 — synced to user-approved Word CV */
+#cv .cv-role{margin:0;font-weight:600;}#cv .cv-desc p{margin:0 0 12px;}#cv .cv-desc li{margin-bottom:12px;}#cv .cv-sidebar a{overflow-wrap:anywhere;}#cv .cv-company{margin:6px 0 12px;}#cv .cv-sidebar-title{font-size:15px;}#cv .cv-divider{font-size:20px;}
